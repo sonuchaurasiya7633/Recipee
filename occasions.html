@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Occasions | Banana Recipes</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+
+   <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <h2>Banana<span>Recipes</span></h2>
+        </div>
+
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="dinners.html">Dinners</a></li>
+          <li><a href="meals.html">Meals</a></li>
+          <li><a href="ingredients.html">Ingredients</a></li>
+          <li><a href="occasions.html">Occasions</a></li>
+          <li><a href="cuisines.html">Cuisines</a></li>
+
+          <li><a href="news.html">News</a></li>
+          <li><a href="features.html">Features</a></li>
+
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+
+        <div class="nav-icons">
+          <button onclick="toggleSearch()" class="icon-btn">
+            <i class="fas fa-search"></i>
+          </button>
+          <button onclick="openChefModal()" class="icon-btn chef-icon">
+            <i class="fas fa-robot"></i> <span>Ask Chef</span>
+          </button>
+          <button onclick="toggleMobileMenu()" class="icon-btn">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+<div id="searchOverlay" class="search-overlay">
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search any recipe..."
+        />
+        <button onclick="searchRecipes()">Search</button>
+        <button onclick="toggleSearch()" class="close-btn">✕</button>
+      </div>
+    </div>
+    <!-- ===== HERO SECTION ===== -->
+
+    <section class="occasions-hero">
+
+        <div class="overlay"></div>
+
+        <div class="hero-content">
+
+            <span class="hero-tag">
+                🎉 Celebrate Every Moment
+            </span>
+
+            <h1>
+                Delicious Recipes <br>
+                For Every Occasion
+            </h1>
+
+            <p>
+                Explore Birthday, Festival, Family Dinner,
+                Romantic Date & Weekend Special Recipes 🍴
+            </p>
+
+            <div class="hero-buttons">
+
+                <button class="primary-btn" onclick="scrollToOccasions()">
+                    Explore Recipes
+                </button>
+
+                <button class="secondary-btn" onclick="openChef()">
+                    Ask AI Chef
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===== OCCASION CARDS ===== -->
+
+    <section class="occasions-section" id="occasionSection">
+
+        <div class="section-title">
+
+            <h2>Popular Occasions</h2>
+
+            <p>
+                Find tasty recipes for your special moments
+            </p>
+
+        </div>
+
+
+        <div class="occasion-grid">
+
+            <!-- CARD 1 -->
+
+            <div class="occasion-card">
+
+                <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=1400">
+
+                <div class="occasion-content">
+
+                    <span>Birthday</span>
+
+                    <h3>Birthday Party</h3>
+
+                    <p>
+                        Cakes, snacks, drinks & party special dishes.
+                    </p>
+
+                    <button onclick="showRecipe('Birthday Party')">
+                        View Recipes
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 2 -->
+
+            <div class="occasion-card">
+
+                <img src="https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=1400">
+
+                <div class="occasion-content">
+
+                    <span>Festival</span>
+
+                    <h3>Festival Specials</h3>
+
+                    <p>
+                        Indian sweets and festive traditional meals.
+                    </p>
+
+                    <button onclick="showRecipe('Festival Specials')">
+                        View Recipes
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 3 -->
+
+            <div class="occasion-card">
+
+                <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=1400">
+
+                <div class="occasion-content">
+
+                    <span>Family</span>
+
+                    <h3>Family Dinner</h3>
+
+                    <p>
+                        Healthy and tasty family dinner recipes.
+                    </p>
+
+                    <button onclick="showRecipe('Family Dinner')">
+                        View Recipes
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 4 -->
+
+            <div class="occasion-card">
+
+                <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=1400">
+
+                <div class="occasion-content">
+
+                    <span>Romantic</span>
+
+                    <h3>Date Night</h3>
+
+                    <p>
+                        Romantic dinner ideas for special evenings.
+                    </p>
+
+                    <button onclick="showRecipe('Date Night')">
+                        View Recipes
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 5 -->
+
+            <div class="occasion-card">
+
+                <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1400">
+
+                <div class="occasion-content">
+
+                    <span>Weekend</span>
+
+                    <h3>Weekend Specials</h3>
+
+                    <p>
+                        Fun snacks and weekend special fast food.
+                    </p>
+
+                    <button onclick="showRecipe('Weekend Specials')">
+                        View Recipes
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 6 -->
+
+            <div class="occasion-card">
+
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1400">
+
+                <div class="occasion-content">
+
+                    <span>Wedding</span>
+
+                    <h3>Wedding Dinner</h3>
+
+                    <p>
+                        Royal wedding dishes and premium recipes.
+                    </p>
+
+                    <button onclick="showRecipe('Wedding Dinner')">
+                        View Recipes
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===== FOOTER ===== -->
+
+   <footer class="footer">
+  <div class="footer-container">
+
+    <!-- BRAND -->
+    <div class="footer-box">
+      <h2 class="footer-logo">
+        Banana<span>Recipes</span>
+      </h2>
+
+      <p class="footer-text">
+        Discover delicious recipes from Indian, Chinese, Veg & Non-Veg cuisines.
+        Cook smarter with Banana Recipes 🍴
+      </p>
+
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+
+      <a href="index.html">Home</a>
+      <a href="dinners.html">Dinners</a>
+      <a href="meals.html">Meals</a>
+      <a href="ingredients.html">Ingredients</a>
+      <a href="about.html">About Us</a>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="footer-box">
+      <h3>Popular Categories</h3>
+
+      <a href="#">Indian Recipes</a>
+      <a href="#">Chinese Recipes</a>
+      <a href="#">Veg Recipes</a>
+      <a href="#">Non-Veg Recipes</a>
+      <a href="#">Desserts</a>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="footer-box">
+      <h3>Subscribe</h3>
+
+      <p class="footer-text">
+        Get latest tasty recipes directly in your inbox 🍕
+      </p>
+
+      <div class="footer-newsletter">
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <p>
+      © 2026 Banana Recipes | All Rights Reserved ❤️
+    </p>
+  </div>
+</footer>
+
+
+    <!-- JS -->
+    <script src="occasions.js"></script>
+
+</body>
+</html>

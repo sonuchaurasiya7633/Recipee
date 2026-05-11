@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Food News | Banana Recipes</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+
+    <div class="logo">
+      <h2>Banana<span>Recipes</span></h2>
+    </div>
+
+    <ul class="nav-menu" id="navMenu">
+
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dinners.html">Dinners</a></li>
+      <li><a href="meals.html">Meals</a></li>
+      <li><a href="ingredients.html">Ingredients</a></li>
+      <li><a href="occasions.html">Occasions</a></li>
+      <li><a href="cuisines.html">Cuisines</a></li>
+      <li><a href="news.html" class="active">News</a></li>
+      <li><a href="about.html">About</a></li>
+
+    </ul>
+
+    <div class="nav-icons">
+
+      <button onclick="toggleSearch()" class="icon-btn">
+        <i class="fas fa-search"></i>
+      </button>
+
+      <button onclick="toggleMenu()" class="icon-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+
+    </div>
+
+  </nav>
+
+  <!-- SEARCH OVERLAY -->
+
+  <div class="search-overlay" id="searchOverlay">
+
+    <div class="search-box">
+
+      <input
+      type="text"
+      placeholder="Search food news...">
+
+      <button>
+        Search
+      </button>
+
+      <button onclick="toggleSearch()" class="close-btn">
+        ✕
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- HERO -->
+
+  <section class="news-hero">
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+
+      <span class="hero-tag">
+        Latest Food Updates 🍴
+      </span>
+
+      <h1>
+        Discover Trending Food News & Recipes
+      </h1>
+
+      <p>
+        Stay updated with the latest food trends,
+        cooking tips and delicious recipe ideas.
+      </p>
+
+      <button onclick="scrollNews()">
+        Explore News
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- NEWS SECTION -->
+
+  <section class="news-section" id="newsSection">
+
+    <div class="section-title">
+
+      <h2>Latest Food News</h2>
+
+      <p>
+        Trending stories from the food world
+      </p>
+
+    </div>
+
+    <div class="news-grid">
+
+      <!-- CARD -->
+
+      <div class="news-card">
+
+        <img
+        src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1400"
+        alt="Food News">
+
+        <div class="news-content">
+
+          <span class="news-tag">
+            Trending
+          </span>
+
+          <h3>
+            Top 10 Street Foods Everyone Loves
+          </h3>
+
+          <p>
+            Discover the most popular street foods loved by foodies worldwide.
+          </p>
+
+          <button onclick="readNews('Street Foods')">
+            Read More
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="news-card">
+
+        <img
+        src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?q=80&w=1400"
+        alt="Food News">
+
+        <div class="news-content">
+
+          <span class="news-tag healthy">
+            Healthy
+          </span>
+
+          <h3>
+            Healthy Breakfast Ideas For Busy Mornings
+          </h3>
+
+          <p>
+            Easy and healthy breakfast recipes to start your day fresh.
+          </p>
+
+          <button onclick="readNews('Healthy Breakfast')">
+            Read More
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="news-card">
+
+        <img
+        src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1400"
+        alt="Food News">
+
+        <div class="news-content">
+
+          <span class="news-tag chef">
+            Chef Tips
+          </span>
+
+          <h3>
+            Professional Chef Secrets For Better Cooking
+          </h3>
+
+          <p>
+            Learn amazing kitchen hacks and cooking tricks from expert chefs.
+          </p>
+
+          <button onclick="readNews('Chef Secrets')">
+            Read More
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- TRENDING -->
+
+  <section class="trending-section">
+
+    <div class="trending-left">
+
+      <span>
+        Trending Recipe 🔥
+      </span>
+
+      <h2>
+        Creamy Pasta Is Taking Over Social Media
+      </h2>
+
+      <p>
+        Creamy cheesy pasta recipes are becoming viral across Instagram
+        and YouTube food creators.
+      </p>
+
+      <button>
+        Explore Recipe
+      </button>
+
+    </div>
+
+    <div class="trending-right">
+
+      <img
+      src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?q=80&w=1400"
+      alt="Trending Food">
+
+    </div>
+
+  </section>
+
+  <!-- NEWSLETTER -->
+
+  <section class="newsletter">
+
+    <h2>
+      Subscribe For Daily Food News 🍕
+    </h2>
+
+    <p>
+      Get the latest recipes and food updates directly in your inbox.
+    </p>
+
+    <div class="newsletter-box">
+
+      <input
+      type="email"
+      placeholder="Enter your email">
+
+      <button>
+        Subscribe
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+    <footer class="footer">
+  <div class="footer-container">
+
+    <!-- BRAND -->
+    <div class="footer-box">
+      <h2 class="footer-logo">
+        Banana<span>Recipes</span>
+      </h2>
+
+      <p class="footer-text">
+        Discover delicious recipes from Indian, Chinese, Veg & Non-Veg cuisines.
+        Cook smarter with Banana Recipes 🍴
+      </p>
+
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+
+      <a href="index.html">Home</a>
+      <a href="dinners.html">Dinners</a>
+      <a href="meals.html">Meals</a>
+      <a href="ingredients.html">Ingredients</a>
+      <a href="about.html">About Us</a>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="footer-box">
+      <h3>Popular Categories</h3>
+
+      <a href="#">Indian Recipes</a>
+      <a href="#">Chinese Recipes</a>
+      <a href="#">Veg Recipes</a>
+      <a href="#">Non-Veg Recipes</a>
+      <a href="#">Desserts</a>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="footer-box">
+      <h3>Subscribe</h3>
+
+      <p class="footer-text">
+        Get latest tasty recipes directly in your inbox 🍕
+      </p>
+
+      <div class="footer-newsletter">
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <p>
+      © 2026 Banana Recipes | All Rights Reserved ❤️
+    </p>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

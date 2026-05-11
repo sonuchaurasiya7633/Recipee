@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ingredients | BananaRecipes</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+
+    <div class="logo">
+      <h2>Banana<span>Recipes</span></h2>
+    </div>
+
+    <ul class="nav-menu">
+
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dinners.html">Dinners</a></li>
+      <li><a href="meals.html">Meals</a></li>
+      <li><a href="ingredients.html" class="active">Ingredients</a></li>
+      <li><a href="occasions.html">Occasions</a></li>
+      <li><a href="cuisines.html">Cuisines</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="about.html">About Us</a></li>
+
+    </ul>
+
+    <div class="nav-icons">
+
+      <button  onclick="toggleSearch()" class="icon-btn">
+        <i class="fas fa-search"></i>
+      </button>
+
+      <button  onclick="openChefModal()"  class="icon-btn chef-icon">
+        <i class="fas fa-robot"></i>
+        <span>Ask Chef</span>
+      </button>
+
+      <button class="icon-btn" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
+
+    </div>
+
+  </nav>
+<div id="searchOverlay" class="search-overlay">
+
+  <div class="search-popup">
+
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search dinner recipes..."
+    >
+
+    <button onclick="searchRecipes()">
+      Search
+    </button>
+
+    <button
+      onclick="toggleSearch()"
+      class="close-search"
+    >
+      ✕
+    </button>
+
+  </div>
+
+</div>
+
+  <!-- HERO SECTION -->
+
+  <section class="ingredients-hero">
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+
+      <span class="hero-tag">
+        🥗 Fresh Ingredients Collection
+      </span>
+
+      <h1>
+        Discover Healthy & Fresh <br>
+        Cooking Ingredients
+      </h1>
+
+      <p>
+        Explore vegetables, fruits, spices, dairy products,
+        herbs, sauces, and premium cooking ingredients
+        used in delicious recipes around the world.
+      </p>
+
+      <div class="hero-buttons">
+
+        <button class="primary-btn">
+          Explore Ingredients
+        </button>
+
+        <button class="secondary-btn">
+          Watch Videos
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- INGREDIENT CATEGORIES -->
+
+  <section class="ingredient-categories">
+
+    <div class="section-title">
+
+      <h2>Popular Ingredients</h2>
+
+      <p>
+        Fresh and healthy ingredients used by top chefs.
+      </p>
+
+    </div>
+
+    <div class="ingredient-grid">
+
+      <div class="ingredient-card">
+
+        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=1200" alt="">
+
+        <div class="ingredient-content">
+
+          <h3>Fresh Vegetables</h3>
+
+          <p>
+            Organic vegetables packed with nutrition and flavor.
+          </p>
+
+          <button>View Details</button>
+
+        </div>
+
+      </div>
+
+
+      <div class="ingredient-card">
+
+        <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=1200" alt="">
+
+        <div class="ingredient-content">
+
+          <h3>Natural Spices</h3>
+
+          <p>
+            Indian spices that add aroma and taste to every dish.
+          </p>
+
+          <button>View Details</button>
+
+        </div>
+
+      </div>
+
+
+      <div class="ingredient-card">
+
+        <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?q=80&w=1200" alt="">
+
+        <div class="ingredient-content">
+
+          <h3>Fresh Fruits</h3>
+
+          <p>
+            Sweet and healthy fruits for desserts and smoothies.
+          </p>
+
+          <button>View Details</button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FEATURED INGREDIENTS -->
+
+  <section class="featured-ingredients">
+
+    <div class="section-title">
+
+      <h2>Chef Recommended Ingredients</h2>
+
+      <p>
+        Essential ingredients for tasty homemade recipes.
+      </p>
+
+    </div>
+
+    <div class="ingredients-list">
+
+      <div class="ingredient-box">
+
+        <img src="https://images.unsplash.com/photo-1603048719539-9ecb4a3e3f6f?q=80&w=1200" alt="">
+
+        <div class="ingredient-info">
+
+          <span class="ingredient-tag">Healthy</span>
+
+          <h3>Organic Tomatoes</h3>
+
+          <p>
+            Rich in vitamins and perfect for curries,
+            salads, sauces, and soups.
+          </p>
+
+          <div class="ingredient-details">
+
+            <span><i class="fas fa-leaf"></i> Organic</span>
+            <span><i class="fas fa-fire"></i> 18 Cal</span>
+
+          </div>
+
+          <button>Read More</button>
+
+        </div>
+
+      </div>
+
+
+      <div class="ingredient-box">
+
+        <img src="https://images.unsplash.com/photo-1582515073490-dc4d6d1d3e1f?q=80&w=1200" alt="">
+
+        <div class="ingredient-info">
+
+          <span class="ingredient-tag spicy">Spicy</span>
+
+          <h3>Red Chilli Powder</h3>
+
+          <p>
+            Adds heat, color, and authentic Indian flavor
+            to every recipe.
+          </p>
+
+          <div class="ingredient-details">
+
+            <span><i class="fas fa-pepper-hot"></i> Hot</span>
+            <span><i class="fas fa-fire"></i> Strong Flavor</span>
+
+          </div>
+
+          <button>Read More</button>
+
+        </div>
+
+      </div>
+
+
+      <div class="ingredient-box">
+
+        <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?q=80&w=1200" alt="">
+
+        <div class="ingredient-info">
+
+          <span class="ingredient-tag dairy">Dairy</span>
+
+          <h3>Fresh Cheese</h3>
+
+          <p>
+            Soft creamy cheese used in pizzas,
+            pasta, sandwiches, and snacks.
+          </p>
+
+          <div class="ingredient-details">
+
+            <span><i class="fas fa-cheese"></i> Fresh</span>
+            <span><i class="fas fa-fire"></i> Rich Taste</span>
+
+          </div>
+
+          <button>Read More</button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CHEF SECTION -->
+
+  <section class="chef-section">
+
+    <div class="chef-left">
+
+      <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=1200" alt="">
+
+    </div>
+
+    <div class="chef-right">
+
+      <span>👨‍🍳 Cooking Tips</span>
+
+      <h2>
+        Fresh Ingredients Make <br>
+        Every Recipe Better
+      </h2>
+
+      <p>
+        Choosing quality ingredients improves taste,
+        nutrition, and cooking experience. Our chefs
+        recommend using fresh vegetables, spices,
+        herbs, and organic products for healthy meals.
+      </p>
+
+      <ul>
+
+        <li>✔ Fresh Organic Products</li>
+        <li>✔ Healthy Cooking Ingredients</li>
+        <li>✔ Better Taste & Flavor</li>
+        <li>✔ Premium Quality Selection</li>
+
+      </ul>
+
+      <button>
+        Learn More
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- NEWSLETTER -->
+
+  <section class="newsletter">
+
+    <h2>
+      Get Ingredient Tips Daily 🥗
+    </h2>
+
+    <p>
+      Subscribe for cooking tips, ingredient guides,
+      and healthy food inspiration.
+    </p>
+
+    <div class="newsletter-box">
+
+      <input type="email" placeholder="Enter your email">
+
+      <button>
+        Subscribe
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+   <footer class="footer">
+  <div class="footer-container">
+
+    <!-- BRAND -->
+    <div class="footer-box">
+      <h2 class="footer-logo">
+        Banana<span>Recipes</span>
+      </h2>
+
+      <p class="footer-text">
+        Discover delicious recipes from Indian, Chinese, Veg & Non-Veg cuisines.
+        Cook smarter with Banana Recipes 🍴
+      </p>
+
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+
+      <a href="index.html">Home</a>
+      <a href="dinners.html">Dinners</a>
+      <a href="meals.html">Meals</a>
+      <a href="ingredients.html">Ingredients</a>
+      <a href="about.html">About Us</a>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="footer-box">
+      <h3>Popular Categories</h3>
+
+      <a href="#">Indian Recipes</a>
+      <a href="#">Chinese Recipes</a>
+      <a href="#">Veg Recipes</a>
+      <a href="#">Non-Veg Recipes</a>
+      <a href="#">Desserts</a>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="footer-box">
+      <h3>Subscribe</h3>
+
+      <p class="footer-text">
+        Get latest tasty recipes directly in your inbox 🍕
+      </p>
+
+      <div class="footer-newsletter">
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <p>
+      © 2026 Banana Recipes | All Rights Reserved ❤️
+    </p>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

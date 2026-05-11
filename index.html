@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="hi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banana Recipes | स्वादिष्ट रेसिपीज़</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <h2>Banana<span>Recipes</span></h2>
+        </div>
+
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="dinners.html">Dinners</a></li>
+          <li><a href="meals.html">Meals</a></li>
+          <li><a href="ingredients.html">Ingredients</a></li>
+          <li><a href="occasions.html">Occasions</a></li>
+          <li><a href="cuisines.html">Cuisines</a></li>
+
+          <li><a href="news.html">News</a></li>
+          <li><a href="features.html">Features</a></li>
+
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+
+        <div class="nav-icons">
+          <button onclick="toggleSearch()" class="icon-btn">
+            <i class="fas fa-search"></i>
+          </button>
+          <button onclick="openChefModal()" class="icon-btn chef-icon">
+            <i class="fas fa-robot"></i> <span>Ask Chef</span>
+          </button>
+          <button onclick="toggleMobileMenu()" class="icon-btn">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Search Overlay -->
+    <div id="searchOverlay" class="search-overlay">
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search any recipe..."
+        />
+        <button onclick="searchRecipes()">Search</button>
+        <button onclick="toggleSearch()" class="close-btn">✕</button>
+      </div>
+    </div>
+
+    <!-- Hero Banner -->
+    <header class="hero">
+      <img src="/images/baner.jpg" alt="Banana Recipes Banner" class="hero-image" />
+      <div class="hero-content">
+        <h1>स्वाद का नया सफर</h1>
+        <p>Indian • Chinese • Veg • Non-Veg • Breakfast • Lunch • Dinner</p>
+        <button onclick="openChefModal()" class="btn primary-btn">
+          Ask AI Chef
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Categories -->
+      <section class="categories">
+        <h2>Browse Categories</h2>
+        <div class="category-grid">
+          <div class="category-card">
+            <img src="/images/Veg-Pulao-Blog.jpg" alt="Veg" />
+            <h3>Veg</h3>
+          </div>
+          <div class="category-card">
+            <img src="/images/non-veg.jpg" alt="Non-Veg" />
+            <h3>Non-Veg</h3>
+          </div>
+          <div class="category-card">
+            <img src="/images/chinease.jpeg" alt="Chinese" />
+            <h3>Chinese</h3>
+          </div>
+          <div class="category-card">
+            <img src="/images/breakfast.jpg" alt="Breakfast" />
+            <h3>Breakfast</h3>
+          </div>
+          <div class="category-card">
+            <img src="/images/lunch.jpeg" alt="Lunch" />
+            <h3>Lunch</h3>
+          </div>
+          <div class="category-card">
+            <img src="/images/dinner.jpeg" alt="Dinner" />
+            <h3>Dinner</h3>
+          </div>
+        </div>
+      </section>
+
+      <!-- Popular Recipes -->
+      <section class="popular-recipes">
+        <h2>Popular Recipes</h2>
+        <div class="recipes-grid">
+          <div class="recipe-card">
+            <img src="/images/banana packers.jpg" alt="" />
+            <div class="recipe-info">
+              <span class="tag veg">Veg</span>
+              <h3>Banana Pancakes</h3>
+              <button onclick="viewRecipe(this)">View Recipe</button>
+            </div>
+          </div>
+          <div class="recipe-card">
+            <img src="/images/chilli chicken.jpg" alt="" />
+            <div class="recipe-info">
+              <span class="tag nonveg">Non-Veg</span>
+              <h3>Chinese Chilli Chicken</h3>
+              <button onclick="viewRecipe(this)">View Recipe</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+  <footer class="footer">
+  <div class="footer-container">
+
+    <!-- BRAND -->
+    <div class="footer-box">
+      <h2 class="footer-logo">
+        Banana<span>Recipes</span>
+      </h2>
+
+      <p class="footer-text">
+        Discover delicious recipes from Indian, Chinese, Veg & Non-Veg cuisines.
+        Cook smarter with Banana Recipes 🍴
+      </p>
+
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+
+      <a href="index.html">Home</a>
+      <a href="dinners.html">Dinners</a>
+      <a href="meals.html">Meals</a>
+      <a href="ingredients.html">Ingredients</a>
+      <a href="about.html">About Us</a>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="footer-box">
+      <h3>Popular Categories</h3>
+
+      <a href="#">Indian Recipes</a>
+      <a href="#">Chinese Recipes</a>
+      <a href="#">Veg Recipes</a>
+      <a href="#">Non-Veg Recipes</a>
+      <a href="#">Desserts</a>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="footer-box">
+      <h3>Subscribe</h3>
+
+      <p class="footer-text">
+        Get latest tasty recipes directly in your inbox 🍕
+      </p>
+
+      <div class="footer-newsletter">
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <p>
+      © 2026 Banana Recipes | All Rights Reserved ❤️
+    </p>
+  </div>
+</footer>
+
+    <!-- AI Chef Modal -->
+    <div id="chefModal" class="modal">
+      <div class="modal-content">
+        <span onclick="closeChefModal()" class="close">×</span>
+        <h2>Ask AI Chef</h2>
+        <div class="chat-container">
+          <div class="chat-messages" id="chatMessages">
+            <div class="message bot">Hello! What recipe do you want today?</div>
+          </div>
+          <div class="chat-input">
+            <input
+              type="text"
+              id="chatInput"
+              placeholder="Type your recipe..."
+            />
+            <button onclick="sendChefMessage()">Send</button>
+          </div>
+        </div>
+        <a
+          href="https://ai-chef-assistant-lvb9qvuqdlwmtitvyoj5v6.streamlit.app"
+          target="_blank"
+          class="full-chef-btn"
+        >
+          Open Full AI Chef →
+        </a>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

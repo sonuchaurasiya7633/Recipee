@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>About Us | Banana Recipes</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+
+    <div class="logo">
+      <h2>Banana<span>Recipes</span></h2>
+    </div>
+
+    <ul class="nav-menu" id="navMenu">
+
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dinners.html">Dinners</a></li>
+      <li><a href="meals.html">Meals</a></li>
+      <li><a href="ingredients.html">Ingredients</a></li>
+      <li><a href="occasions.html">Occasions</a></li>
+      <li><a href="cuisines.html">Cuisines</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+
+    </ul>
+
+    <div class="nav-icons">
+
+      <button onclick="toggleSearch()" class="icon-btn">
+        <i class="fas fa-search"></i>
+      </button>
+
+      <button onclick="toggleMenu()" class="icon-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+
+    </div>
+
+  </nav>
+
+  <!-- SEARCH OVERLAY -->
+
+  <div class="search-overlay" id="searchOverlay">
+
+    <div class="search-box">
+
+      <input type="text" placeholder="Search recipes...">
+
+      <button>Search</button>
+
+      <button onclick="toggleSearch()" class="close-btn">
+        ✕
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- HERO -->
+
+  <section class="about-hero">
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+
+      <span class="hero-tag">
+        About Banana Recipes 🍴
+      </span>
+
+      <h1>
+        Bringing Delicious Recipes To Your Kitchen
+      </h1>
+
+      <p>
+        Explore tasty Indian, Chinese, Italian and modern recipes
+        made with love and creativity.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section class="about-section">
+
+    <div class="about-image">
+
+      <img
+      src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1400"
+      alt="About">
+
+    </div>
+
+    <div class="about-content">
+
+      <span>Who We Are</span>
+
+      <h2>
+        We Make Cooking Easy & Fun
+      </h2>
+
+      <p>
+        Banana Recipes is a modern food website where you can
+        discover tasty recipes, cooking inspiration and food ideas
+        from around the world.
+      </p>
+
+      <p>
+        Our mission is to help food lovers learn simple cooking,
+        explore new cuisines and enjoy delicious meals every day.
+      </p>
+
+      <div class="about-features">
+
+        <div class="feature-box">
+          <i class="fas fa-utensils"></i>
+          <h3>500+ Recipes</h3>
+        </div>
+
+        <div class="feature-box">
+          <i class="fas fa-globe"></i>
+          <h3>World Cuisines</h3>
+        </div>
+
+        <div class="feature-box">
+          <i class="fas fa-users"></i>
+          <h3>Food Community</h3>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- TEAM -->
+
+  <section class="team-section">
+
+    <div class="section-title">
+
+      <h2>Meet Our Chefs</h2>
+
+      <p>
+        Passionate food creators behind Banana Recipes
+      </p>
+
+    </div>
+
+    <div class="team-grid">
+
+      <!-- CARD -->
+
+      <div class="team-card">
+
+        <img
+        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200"
+        alt="Chef">
+
+        <div class="team-content">
+
+          <h3>Chef Rahul</h3>
+
+          <p>Indian Cuisine Expert</p>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="team-card">
+
+        <img
+        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200"
+        alt="Chef">
+
+        <div class="team-content">
+
+          <h3>Chef Maria</h3>
+
+          <p>Italian & Bakery Specialist</p>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+
+      <div class="team-card">
+
+        <img
+        src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200"
+        alt="Chef">
+
+        <div class="team-content">
+
+          <h3>Chef Alex</h3>
+
+          <p>Chinese & Asian Food Expert</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- NEWSLETTER -->
+
+  <section class="newsletter">
+
+    <h2>
+      Join Our Food Community 🍕
+    </h2>
+
+    <p>
+      Subscribe for delicious recipes and cooking inspiration.
+    </p>
+
+    <div class="newsletter-box">
+
+      <input
+      type="email"
+      placeholder="Enter your email">
+
+      <button>
+        Subscribe
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+   <footer class="footer">
+  <div class="footer-container">
+
+    <!-- BRAND -->
+    <div class="footer-box">
+      <h2 class="footer-logo">
+        Banana<span>Recipes</span>
+      </h2>
+
+      <p class="footer-text">
+        Discover delicious recipes from Indian, Chinese, Veg & Non-Veg cuisines.
+        Cook smarter with Banana Recipes 🍴
+      </p>
+
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+
+      <a href="index.html">Home</a>
+      <a href="dinners.html">Dinners</a>
+      <a href="meals.html">Meals</a>
+      <a href="ingredients.html">Ingredients</a>
+      <a href="about.html">About Us</a>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="footer-box">
+      <h3>Popular Categories</h3>
+
+      <a href="#">Indian Recipes</a>
+      <a href="#">Chinese Recipes</a>
+      <a href="#">Veg Recipes</a>
+      <a href="#">Non-Veg Recipes</a>
+      <a href="#">Desserts</a>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="footer-box">
+      <h3>Subscribe</h3>
+
+      <p class="footer-text">
+        Get latest tasty recipes directly in your inbox 🍕
+      </p>
+
+      <div class="footer-newsletter">
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <p>
+      © 2026 Banana Recipes | All Rights Reserved ❤️
+    </p>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

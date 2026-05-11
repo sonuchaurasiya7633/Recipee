@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Features | BananaRecipes</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+
+    <div class="logo">
+      <h2>Banana<span>Recipes</span></h2>
+    </div>
+
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dinners.html">Dinners</a></li>
+      <li><a href="meals.html">Meals</a></li>
+      <li><a href="ingredients.html">Ingredients</a></li>
+      <li><a href="occasions.html">Occasions</a></li>
+      <li><a href="cuisines.html">Cuisines</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="features.html" class="active">Features</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+
+    <div class="nav-icons">
+
+      <button onclick="toggleSearch()" class="icon-btn">
+        <i class="fas fa-search"></i>
+      </button>
+
+      <button onclick="openChefModal()" class="icon-btn chef-icon">
+        <i class="fas fa-robot"></i>
+        <span>Ask Chef</span>
+      </button>
+
+      <button onclick="toggleMobileMenu()" class="icon-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+
+    </div>
+
+  </nav>
+
+
+  <!-- SEARCH OVERLAY -->
+
+  <div id="searchOverlay" class="search-overlay">
+
+    <div class="search-popup">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search recipes..."
+      >
+
+      <button onclick="searchRecipes()">
+        Search
+      </button>
+
+      <button onclick="toggleSearch()" class="close-search">
+        ✕
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- HERO -->
+
+  <section class="features-hero">
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+
+      <span class="hero-tag">
+        ✨ Smart Food Experience
+      </span>
+
+      <h1>
+        Amazing Features For Food Lovers
+      </h1>
+
+      <p>
+        Discover AI-powered recipe search,
+        meal planning, trending dishes
+        and smart cooking tools.
+      </p>
+
+      <div class="hero-buttons">
+
+        <button onclick="exploreFeatures()" class="primary-btn">
+          Explore Features
+        </button>
+
+        <button onclick="tryChef()" class="secondary-btn">
+          Try AI Chef
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FEATURES -->
+
+  <section class="features-section">
+
+    <div class="section-title">
+
+      <h2>Our Features</h2>
+
+      <p>
+        Modern tools designed for food lovers.
+      </p>
+
+    </div>
+
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <i class="fas fa-robot"></i>
+        <h3>AI Chef</h3>
+        <p>
+          Ask AI for instant recipe ideas and cooking help.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fas fa-search"></i>
+        <h3>Smart Search</h3>
+        <p>
+          Search recipes by ingredients or cuisine type.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fas fa-heart"></i>
+        <h3>Favorites</h3>
+        <p>
+          Save your favorite recipes anytime easily.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fas fa-fire"></i>
+        <h3>Trending Recipes</h3>
+        <p>
+          Explore viral and trending dishes daily.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fas fa-utensils"></i>
+        <h3>Meal Planner</h3>
+        <p>
+          Plan breakfast, lunch and dinner quickly.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fas fa-video"></i>
+        <h3>Cooking Videos</h3>
+        <p>
+          Watch recipe tutorials and improve cooking skills.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- HIGHLIGHT -->
+
+  <section class="feature-highlight">
+
+    <div class="feature-left">
+
+      <img
+      src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1400"
+      alt="Food">
+
+    </div>
+
+    <div class="feature-right">
+
+      <span>Why Choose Us</span>
+
+      <h2>
+        Smart Cooking Experience
+      </h2>
+
+      <p>
+        Banana Recipes combines modern technology
+        with delicious food experiences.
+      </p>
+
+      <ul>
+        <li>✔ AI Recipe Suggestions</li>
+        <li>✔ Fast Recipe Search</li>
+        <li>✔ Beautiful Recipe UI</li>
+        <li>✔ Trending Food Updates</li>
+      </ul>
+
+      <button>
+        Learn More
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- STATS -->
+
+  <section class="feature-stats">
+
+    <div class="stat-box">
+      <h2>10K+</h2>
+      <p>Recipes</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>5K+</h2>
+      <p>Daily Users</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>500+</h2>
+      <p>Food Categories</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>24/7</h2>
+      <p>AI Support</p>
+    </div>
+
+  </section>
+
+
+  <!-- NEWSLETTER -->
+
+  <section class="newsletter">
+
+    <h2>Get New Updates 🍴</h2>
+
+    <p>
+      Subscribe for latest features and food news.
+    </p>
+
+    <div class="newsletter-box">
+
+      <input
+      type="email"
+      placeholder="Enter your email">
+
+      <button onclick="subscribeFeature()">
+        Subscribe
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+  <div class="footer-container">
+
+    <!-- BRAND -->
+    <div class="footer-box">
+      <h2 class="footer-logo">
+        Banana<span>Recipes</span>
+      </h2>
+
+      <p class="footer-text">
+        Discover delicious recipes from Indian, Chinese, Veg & Non-Veg cuisines.
+        Cook smarter with Banana Recipes 🍴
+      </p>
+
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+
+      <a href="index.html">Home</a>
+      <a href="dinners.html">Dinners</a>
+      <a href="meals.html">Meals</a>
+      <a href="ingredients.html">Ingredients</a>
+      <a href="about.html">About Us</a>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="footer-box">
+      <h3>Popular Categories</h3>
+
+      <a href="#">Indian Recipes</a>
+      <a href="#">Chinese Recipes</a>
+      <a href="#">Veg Recipes</a>
+      <a href="#">Non-Veg Recipes</a>
+      <a href="#">Desserts</a>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="footer-box">
+      <h3>Subscribe</h3>
+
+      <p class="footer-text">
+        Get latest tasty recipes directly in your inbox 🍕
+      </p>
+
+      <div class="footer-newsletter">
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <p>
+      © 2026 Banana Recipes | All Rights Reserved ❤️
+    </p>
+  </div>
+</footer>
+
+
+  <!-- SCRIPT -->
+
+  <script src="script.js"></script>
+
+</body>
+</html>
