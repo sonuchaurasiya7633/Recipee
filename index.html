@@ -387,65 +387,148 @@
       }
 
       /* Footer */
-      .footer {
-        background: #1a1a1a;
-        color: #ddd;
-        padding: 80px 5% 40px;
-      }
+     /* ==================== FOOTER ==================== */
+.footer {
+  background: #1a1a1a;
+  color: #ddd;
+  padding: 80px 5% 40px;
+}
 
-      .footer-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 50px;
-        max-width: 1400px;
-        margin: 0 auto;
-      }
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 50px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-      .footer-box h3 {
-        color: var(--primary);
-        margin-bottom: 20px;
-      }
+.footer-box h3 {
+  color: var(--primary);
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+}
 
-      .footer-box a {
-        display: block;
-        color: #bbb;
-        text-decoration: none;
-        margin-bottom: 12px;
-      }
+.footer-box a {
+  display: block;
+  color: #bbb;
+  text-decoration: none;
+  margin-bottom: 12px;
+  transition: all 0.3s;
+}
 
-      .footer-box a:hover {
-        color: var(--primary);
-      }
+.footer-box a:hover {
+  color: var(--primary);
+  padding-left: 5px;
+}
 
-      .footer-logo {
-        font-size: 2.1rem;
-        color: white;
-        margin-bottom: 15px;
-      }
+.footer-logo {
+  font-size: 2.1rem;
+  color: white;
+  margin-bottom: 15px;
+}
 
-      .footer-logo span {
-        color: var(--primary);
-      }
+.footer-logo span {
+  color: var(--primary);
+}
 
-      .footer-bottom {
-        text-align: center;
-        margin-top: 70px;
-        padding-top: 30px;
-        border-top: 1px solid #333;
-        color: #888;
-      }
+.footer-text {
+  line-height: 1.7;
+  margin-bottom: 25px;
+  max-width: 280px;
+}
 
-      /* Modal */
-      .modal {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: rgba(0,0,0,0.8);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 4000;
-      }
+/* Social Icons */
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: #333;
+  color: #ddd;
+  border-radius: 50%;
+  margin-right: 10px;
+  transition: all 0.3s;
+}
+
+.social-icons a:hover {
+  background: var(--accent);
+  color: white;
+  transform: translateY(-4px);
+}
+
+/* Newsletter */
+.newsletter-box {
+  display: flex;
+  margin: 20px 0;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.newsletter-box input {
+  flex: 1;
+  padding: 16px 20px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.newsletter-box button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0 32px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.newsletter-box button:hover {
+  background: #e55a00;
+}
+
+/* Bottom Bar */
+.footer-bottom {
+  margin-top: 70px;
+  padding-top: 30px;
+  border-top: 1px solid #333;
+  text-align: center;
+}
+
+.footer-bottom-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.footer-bottom-content a {
+  color: #aaa;
+  margin: 0 12px;
+  text-decoration: none;
+}
+
+.footer-bottom-content a:hover {
+  color: var(--primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    gap: 40px;
+  }
+  
+  .footer-bottom-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
 
       /* Responsive */
       @media (max-width: 992px) {
@@ -512,14 +595,8 @@
       </ul>
     </div>
 
-    <!-- Search Overlay -->
-    <div id="searchOverlay" class="search-overlay">
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search any recipe..." />
-        <button onclick="searchRecipes()">Search</button>
-        <button onclick="toggleSearch()" class="close-btn">✕</button>
-      </div>
-    </div>
+   
+   
 
     <!-- Hero -->
     <header class="hero">
@@ -568,27 +645,77 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-box">
-          <h2 class="footer-logo">Banana<span>Recipes</span></h2>
-          <p>Discover delicious recipes from Indian, Chinese, Veg & Non-Veg cuisines.</p>
-        </div>
-        <!-- Add more footer boxes if needed -->
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 Banana Recipes | All Rights Reserved ❤️</p>
-      </div>
-    </footer>
-
-    <!-- AI Chef Modal -->
-    <div id="chefModal" class="modal">
-      <div class="modal-content">
-        <span onclick="closeChefModal()" class="close">×</span>
-        <h2>Ask AI Chef</h2>
-        <!-- Chat content here -->
+   <!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    
+    <!-- Column 1: Brand -->
+    <div class="footer-box">
+      <h2 class="footer-logo">Banana<span>Recipes</span></h2>
+      <p class="footer-text">
+        Your ultimate destination for delicious homemade recipes. 
+        From quick meals to festive feasts — cook with love, eat with joy.
+      </p>
+      <div class="social-icons">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
       </div>
     </div>
+
+    <!-- Column 2: Quick Links -->
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <a href="index.html">Home</a>
+      <a href="dinners.html">Dinner Recipes</a>
+      <a href="meals.html">All Meals</a>
+      <a href="ingredients.html">Ingredients</a>
+      <a href="occasions.html">Occasions</a>
+      <a href="cuisines.html">Cuisines</a>
+    </div>
+
+    <!-- Column 3: Explore More -->
+    <div class="footer-box">
+      <h3>Explore</h3>
+      <a href="#">Breakfast Recipes</a>
+      <a href="#">Lunch Ideas</a>
+      <a href="#">Veg Recipes</a>
+      <a href="#">Non-Veg Recipes</a>
+      <a href="#">Desserts</a>
+      <a href="#">Healthy Meals</a>
+      <a href="#">30-Minute Recipes</a>
+    </div>
+
+    <!-- Column 4: Newsletter -->
+    <div class="footer-box">
+      <h3>Stay Updated</h3>
+      <p class="footer-text">
+        Get fresh recipes, cooking tips &amp; weekly meal ideas delivered to your inbox.
+      </p>
+      <div class="newsletter-box">
+        <input type="email" placeholder="Enter your email address" required>
+        <button>Subscribe</button>
+      </div>
+      <small>We respect your inbox. Unsubscribe anytime.</small>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer-bottom">
+    <div class="footer-bottom-content">
+      <p>© 2026 Banana Recipes | All Rights Reserved ❤️</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+   
 
     <script>
       function toggleDrawer() {
