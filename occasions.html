@@ -1,354 +1,722 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Occasions | BananaRecipes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  <style>
+    :root {
+      --primary: #ffcc00;
+      --primary-dark: #e6b800;
+      --accent: #ff6b00;
+      --text: #333333;
+      --dark: #222222;
+      --light: #fffaf0;
+    }
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <title>Occasions | Banana Recipes</title>
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--light);
+    }
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    /* ==================== NAVBAR ==================== */
+    .navbar {
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-    <!-- FONT AWESOME -->
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 78px;
+    }
 
+    .logo h2 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 8px;
+    }
+
+    .nav-menu li a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      padding: 12px 22px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-menu li a:hover,
+    .nav-menu li a.active {
+      background: var(--primary);
+      color: #222;
+    }
+
+    .nav-icons {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--dark);
+    }
+
+    .icon-btn:hover {
+      background: #f5f5f5;
+    }
+
+    .chef-icon {
+      background: var(--accent);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hamburger {
+      font-size: 1.9rem;
+      cursor: pointer;
+      color: var(--dark);
+      display: none;
+    }
+
+    /* Drawer */
+    .drawer {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100vh;
+      background: white;
+      box-shadow: 5px 0 20px rgba(0, 0, 0, 0.15);
+      transition: left 0.4s ease;
+      z-index: 3000;
+      padding: 20px 0;
+    }
+
+    .drawer.open { left: 0; }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 25px 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .drawer-close {
+      font-size: 2.2rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .drawer-menu {
+      list-style: none;
+      padding: 15px 0;
+    }
+
+    .drawer-menu li a {
+      display: block;
+      padding: 15px 25px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .drawer-menu li a:hover,
+    .drawer-menu li a.active {
+      background: #fff8e6;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 2500;
+    }
+
+    .overlay.show { display: block; }
+
+    /* Search Overlay */
+    .search-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 4000;
+    }
+
+    .search-box {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 50px;
+      width: 90%;
+      max-width: 600px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 1.1rem;
+      padding: 12px 0;
+    }
+
+    /* ==================== HERO ==================== */
+    .occasions-hero {
+      position: relative;
+      height: 75vh;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .occasions-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)), 
+                  url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1600') center/cover no-repeat;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .hero-tag {
+      background: rgba(255, 204, 0, 0.95);
+      color: #222;
+      padding: 8px 22px;
+      border-radius: 50px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+
+    .hero-content h1 {
+      font-size: 3.4rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero-content p {
+      font-size: 1.25rem;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn, .secondary-btn {
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .primary-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+    }
+
+    .secondary-btn {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    /* Sections */
+    section {
+      padding: 75px 5%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      font-size: 1.1rem;
+      color: #666;
+    }
+
+    /* Occasion Grid */
+    .occasion-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .occasion-card {
+      background: white;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.4s;
+    }
+
+    .occasion-card:hover {
+      transform: translateY(-12px);
+    }
+
+    .occasion-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .occasion-content {
+      padding: 25px;
+    }
+
+    .occasion-content span {
+      display: inline-block;
+      background: var(--primary);
+      color: #222;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .occasion-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .occasion-content p {
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    /* Featured Section */
+    .featured-occasions {
+      background: #fff8e6;
+    }
+
+    /* Chef Section */
+    .chef-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .chef-left img {
+      width: 100%;
+      border-radius: 20px;
+    }
+
+    .chef-right ul {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .chef-right ul li {
+      padding: 8px 0;
+    }
+
+    /* Newsletter */
+    .newsletter {
+      text-align: center;
+      background: white;
+      padding: 60px 20px;
+      border-radius: 20px;
+      max-width: 800px;
+      margin: 40px auto;
+    }
+
+    .newsletter-box {
+      display: flex;
+      max-width: 500px;
+      margin: 25px auto;
+      border-radius: 50px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .newsletter-box input {
+      flex: 1;
+      padding: 16px 20px;
+      border: none;
+      outline: none;
+    }
+
+    .newsletter-box button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0 35px;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    .footer {
+      background: #1a1a1a;
+      color: #ddd;
+      padding: 80px 5% 40px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 50px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-size: 2.1rem;
+      color: white;
+    }
+
+    .footer-logo span {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 70px;
+      padding-top: 30px;
+      border-top: 1px solid #333;
+      color: #888;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .nav-menu { display: none; }
+      .hamburger { display: block; }
+      .chef-section { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-content h1 { font-size: 2.6rem; }
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- ===== NAVBAR ===== -->
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <h2>Banana<span>Recipes</span></h2>
+      </div>
 
-   <nav class="navbar">
-      <div class="nav-container">
-        <div class="logo">
-          <h2>Banana<span>Recipes</span></h2>
-        </div>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dinners.html">Dinners</a></li>
+        <li><a href="meals.html">Meals</a></li>
+        <li><a href="ingredients.html">Ingredients</a></li>
+        <li><a href="occasions.html" class="active">Occasions</a></li>
+        <li><a href="cuisines.html">Cuisines</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
 
-        <ul class="nav-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="dinners.html">Dinners</a></li>
-          <li><a href="meals.html">Meals</a></li>
-          <li><a href="ingredients.html">Ingredients</a></li>
-          <li><a href="occasions.html">Occasions</a></li>
-          <li><a href="cuisines.html">Cuisines</a></li>
-
-          <li><a href="news.html">News</a></li>
-          <li><a href="features.html">Features</a></li>
-
-          <li><a href="about.html">About Us</a></li>
-        </ul>
-
-        <div class="nav-icons">
-          <button onclick="toggleSearch()" class="icon-btn">
-            <i class="fas fa-search"></i>
-          </button>
-          <button onclick="openChefModal()" class="icon-btn chef-icon">
-            <i class="fas fa-robot"></i> <span>Ask Chef</span>
-          </button>
-          <button onclick="toggleMobileMenu()" class="icon-btn">
-            <i class="fas fa-bars"></i>
-          </button>
+      <div class="nav-icons">
+        <button onclick="toggleSearch()" class="icon-btn">
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <div class="hamburger" onclick="toggleDrawer()">
+          <i class="fas fa-bars"></i>
         </div>
       </div>
-    </nav>
-
-<div id="searchOverlay" class="search-overlay">
-      <div class="search-box">
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Search any recipe..."
-        />
-        <button onclick="searchRecipes()">Search</button>
-        <button onclick="toggleSearch()" class="close-btn">✕</button>
-      </div>
     </div>
-    <!-- ===== HERO SECTION ===== -->
-
-    <section class="occasions-hero">
-
-        <div class="overlay"></div>
-
-        <div class="hero-content">
-
-            <span class="hero-tag">
-                🎉 Celebrate Every Moment
-            </span>
-
-            <h1>
-                Delicious Recipes <br>
-                For Every Occasion
-            </h1>
-
-            <p>
-                Explore Birthday, Festival, Family Dinner,
-                Romantic Date & Weekend Special Recipes 🍴
-            </p>
-
-            <div class="hero-buttons">
-
-                <button class="primary-btn" onclick="scrollToOccasions()">
-                    Explore Recipes
-                </button>
-
-                <button class="secondary-btn" onclick="openChef()">
-                    Ask AI Chef
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ===== OCCASION CARDS ===== -->
-
-    <section class="occasions-section" id="occasionSection">
-
-        <div class="section-title">
-
-            <h2>Popular Occasions</h2>
-
-            <p>
-                Find tasty recipes for your special moments
-            </p>
-
-        </div>
-
-
-        <div class="occasion-grid">
-
-            <!-- CARD 1 -->
-
-            <div class="occasion-card">
-
-                <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=1400">
-
-                <div class="occasion-content">
-
-                    <span>Birthday</span>
-
-                    <h3>Birthday Party</h3>
-
-                    <p>
-                        Cakes, snacks, drinks & party special dishes.
-                    </p>
-
-                    <button onclick="showRecipe('Birthday Party')">
-                        View Recipes
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- CARD 2 -->
-
-            <div class="occasion-card">
-
-                <img src="https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=1400">
-
-                <div class="occasion-content">
-
-                    <span>Festival</span>
-
-                    <h3>Festival Specials</h3>
-
-                    <p>
-                        Indian sweets and festive traditional meals.
-                    </p>
-
-                    <button onclick="showRecipe('Festival Specials')">
-                        View Recipes
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- CARD 3 -->
-
-            <div class="occasion-card">
-
-                <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=1400">
-
-                <div class="occasion-content">
-
-                    <span>Family</span>
-
-                    <h3>Family Dinner</h3>
-
-                    <p>
-                        Healthy and tasty family dinner recipes.
-                    </p>
-
-                    <button onclick="showRecipe('Family Dinner')">
-                        View Recipes
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- CARD 4 -->
-
-            <div class="occasion-card">
-
-                <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=1400">
-
-                <div class="occasion-content">
-
-                    <span>Romantic</span>
-
-                    <h3>Date Night</h3>
-
-                    <p>
-                        Romantic dinner ideas for special evenings.
-                    </p>
-
-                    <button onclick="showRecipe('Date Night')">
-                        View Recipes
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- CARD 5 -->
-
-            <div class="occasion-card">
-
-                <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1400">
-
-                <div class="occasion-content">
-
-                    <span>Weekend</span>
-
-                    <h3>Weekend Specials</h3>
-
-                    <p>
-                        Fun snacks and weekend special fast food.
-                    </p>
-
-                    <button onclick="showRecipe('Weekend Specials')">
-                        View Recipes
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- CARD 6 -->
-
-            <div class="occasion-card">
-
-                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1400">
-
-                <div class="occasion-content">
-
-                    <span>Wedding</span>
-
-                    <h3>Wedding Dinner</h3>
-
-                    <p>
-                        Royal wedding dishes and premium recipes.
-                    </p>
-
-                    <button onclick="showRecipe('Wedding Dinner')">
-                        View Recipes
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ===== FOOTER ===== -->
-
-   <footer class="footer">
-  <div class="footer-container">
-
-    <!-- BRAND -->
-    <div class="footer-box">
-      <h2 class="footer-logo">
-        Banana<span>Recipes</span>
-      </h2>
-
-      <p class="footer-text">
-        Discover delicious recipes from Indian, Chinese, Veg & Non-Veg cuisines.
-        Cook smarter with Banana Recipes 🍴
-      </p>
-
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-      </div>
+  </nav>
+
+  <!-- Drawer -->
+  <div class="overlay" id="overlay" onclick="toggleDrawer()"></div>
+  <div class="drawer" id="drawer">
+    <div class="drawer-header">
+      <h2>Banana<span>Recipes</span></h2>
+      <span class="drawer-close" onclick="toggleDrawer()">×</span>
     </div>
-
-    <!-- QUICK LINKS -->
-    <div class="footer-box">
-      <h3>Quick Links</h3>
-
-      <a href="index.html">Home</a>
-      <a href="dinners.html">Dinners</a>
-      <a href="meals.html">Meals</a>
-      <a href="ingredients.html">Ingredients</a>
-      <a href="about.html">About Us</a>
-    </div>
-
-    <!-- CATEGORIES -->
-    <div class="footer-box">
-      <h3>Popular Categories</h3>
-
-      <a href="#">Indian Recipes</a>
-      <a href="#">Chinese Recipes</a>
-      <a href="#">Veg Recipes</a>
-      <a href="#">Non-Veg Recipes</a>
-      <a href="#">Desserts</a>
-    </div>
-
-    <!-- NEWSLETTER -->
-    <div class="footer-box">
-      <h3>Subscribe</h3>
-
-      <p class="footer-text">
-        Get latest tasty recipes directly in your inbox 🍕
-      </p>
-
-      <div class="footer-newsletter">
-        <input type="email" placeholder="Enter your email">
-        <button>Subscribe</button>
-      </div>
-    </div>
-
+    <ul class="drawer-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dinners.html">Dinners</a></li>
+      <li><a href="meals.html">Meals</a></li>
+      <li><a href="ingredients.html">Ingredients</a></li>
+      <li><a href="occasions.html" class="active">Occasions</a></li>
+      <li><a href="cuisines.html">Cuisines</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
   </div>
 
-  <!-- BOTTOM -->
-  <div class="footer-bottom">
-    <p>
-      © 2026 Banana Recipes | All Rights Reserved ❤️
-    </p>
+  <!-- Search Overlay -->
+  <div id="searchOverlay" class="search-overlay">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search recipes or occasions..." />
+      <button onclick="searchRecipes()">Search</button>
+      <button onclick="toggleSearch()" class="close-btn">✕</button>
+    </div>
   </div>
-</footer>
 
+  <!-- HERO -->
+  <section class="occasions-hero">
+    <div class="hero-content">
+      <span class="hero-tag">🎉 Celebrate Every Moment</span>
+      <h1>Delicious Recipes<br>For Every Occasion</h1>
+      <p>Explore Birthday, Festival, Family Dinner, Romantic Date & Weekend Special Recipes 🍴</p>
+      <div class="hero-buttons">
+        <button class="primary-btn" onclick="scrollToOccasions()">Explore Recipes</button>
+        <button class="secondary-btn" onclick="openChefModal()">Ask AI Chef</button>
+      </div>
+    </div>
+  </section>
 
-    <!-- JS -->
-    <script src="occasions.js"></script>
+  <!-- Popular Occasions -->
+  <section class="occasions-section" id="occasionSection">
+    <div class="section-title">
+      <h2>Popular Occasions</h2>
+      <p>Find tasty recipes for your special moments</p>
+    </div>
+    <div class="occasion-grid">
+      <!-- CARD 1 -->
+      <div class="occasion-card">
+        <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=1400" alt="Birthday">
+        <div class="occasion-content">
+          <span>Birthday</span>
+          <h3>Birthday Party</h3>
+          <p>Cakes, snacks, drinks & party special dishes.</p>
+          <button onclick="showRecipe('Birthday Party')">View Recipes</button>
+        </div>
+      </div>
 
+      <!-- CARD 2 -->
+      <div class="occasion-card">
+        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=1400" alt="Festival">
+        <div class="occasion-content">
+          <span>Festival</span>
+          <h3>Festival Specials</h3>
+          <p>Indian sweets and festive traditional meals.</p>
+          <button onclick="showRecipe('Festival Specials')">View Recipes</button>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="occasion-card">
+        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=1400" alt="Family">
+        <div class="occasion-content">
+          <span>Family</span>
+          <h3>Family Dinner</h3>
+          <p>Healthy and tasty family dinner recipes.</p>
+          <button onclick="showRecipe('Family Dinner')">View Recipes</button>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="occasion-card">
+        <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=1400" alt="Romantic">
+        <div class="occasion-content">
+          <span>Romantic</span>
+          <h3>Date Night</h3>
+          <p>Romantic dinner ideas for special evenings.</p>
+          <button onclick="showRecipe('Date Night')">View Recipes</button>
+        </div>
+      </div>
+
+      <!-- CARD 5 -->
+      <div class="occasion-card">
+        <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1400" alt="Weekend">
+        <div class="occasion-content">
+          <span>Weekend</span>
+          <h3>Weekend Specials</h3>
+          <p>Fun snacks and weekend special fast food.</p>
+          <button onclick="showRecipe('Weekend Specials')">View Recipes</button>
+        </div>
+      </div>
+
+      <!-- CARD 6 -->
+      <div class="occasion-card">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1400" alt="Wedding">
+        <div class="occasion-content">
+          <span>Wedding</span>
+          <h3>Wedding Dinner</h3>
+          <p>Royal wedding dishes and premium recipes.</p>
+          <button onclick="showRecipe('Wedding Dinner')">View Recipes</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chef Section -->
+  <section class="chef-section">
+    <div class="chef-left">
+      <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=1200" alt="Chef">
+    </div>
+    <div class="chef-right">
+      <span>👨‍🍳 Special Moments</span>
+      <h2>Make Every Occasion<br>Memorable with Food</h2>
+      <p>From intimate date nights to grand weddings and festive celebrations — the right recipe turns every gathering into a beautiful memory.</p>
+      <ul>
+        <li>✔ Perfect for Celebrations</li>
+        <li>✔ Family Favorites</li>
+        <li>✔ Romantic & Festive Ideas</li>
+        <li>✔ Easy to Scale Recipes</li>
+      </ul>
+      <button class="primary-btn" onclick="openChefModal()">Ask AI Chef for Ideas</button>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <h2>Get Occasion Ideas Daily 🎉</h2>
+    <p>Subscribe for festival specials, party menus, and celebration recipes.</p>
+    <div class="newsletter-box">
+      <input type="email" placeholder="Enter your email">
+      <button>Subscribe</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-box">
+        <h2 class="footer-logo">Banana<span>Recipes</span></h2>
+        <p>Discover delicious recipes from Indian, Chinese, Veg & Non-Veg cuisines. Cook smarter with Banana Recipes 🍴</p>
+      </div>
+      <div class="footer-box">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="dinners.html">Dinners</a>
+        <a href="meals.html">Meals</a>
+        <a href="ingredients.html">Ingredients</a>
+        <a href="occasions.html">Occasions</a>
+        <a href="about.html">About Us</a>
+      </div>
+      <div class="footer-box">
+        <h3>Popular Categories</h3>
+        <a href="#">Indian Recipes</a>
+        <a href="#">Chinese Recipes</a>
+        <a href="#">Veg Recipes</a>
+        <a href="#">Non-Veg Recipes</a>
+        <a href="#">Desserts</a>
+      </div>
+      <div class="footer-box">
+        <h3>Subscribe</h3>
+        <p>Get latest tasty recipes directly in your inbox 🍕</p>
+        <div class="newsletter-box">
+          <input type="email" placeholder="Enter your email">
+          <button>Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Banana Recipes | All Rights Reserved ❤️</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleDrawer() {
+      document.getElementById('drawer').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('show');
+    }
+
+    function toggleSearch() {
+      const overlay = document.getElementById('searchOverlay');
+      overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function openChefModal() {
+      alert("AI Chef Modal is opening... (Demo)\nTell me what occasion you're celebrating!");
+    }
+
+    function searchRecipes() {
+      alert("Searching recipes... (Demo)");
+      toggleSearch();
+    }
+
+    function showRecipe(occasion) {
+      alert(`Showing recipes for: ${occasion} 🎉\n(You can link this to actual recipe pages later)`);
+    }
+
+    function scrollToOccasions() {
+      document.getElementById('occasionSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Close search on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === "Escape") {
+        const overlay = document.getElementById('searchOverlay');
+        if (overlay.style.display === 'flex') toggleSearch();
+      }
+    });
+  </script>
 </body>
 </html>
