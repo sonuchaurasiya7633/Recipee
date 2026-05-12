@@ -421,36 +421,146 @@
 
     /* Footer */
     .footer {
-      background: #1a1a1a;
-      color: #ddd;
-      padding: 80px 5% 40px;
-    }
+  background: #1a1a1a;
+  color: #ddd;
+  padding: 80px 5% 40px;
+}
 
-    .footer-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 50px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 50px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-    .footer-logo {
-      font-size: 2.1rem;
-      color: white;
-    }
+.footer-box h3 {
+  color: var(--primary);
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+}
 
-    .footer-logo span {
-      color: var(--primary);
-    }
+.footer-box a {
+  display: block;
+  color: #bbb;
+  text-decoration: none;
+  margin-bottom: 12px;
+  transition: all 0.3s;
+}
 
-    .footer-bottom {
-      text-align: center;
-      margin-top: 70px;
-      padding-top: 30px;
-      border-top: 1px solid #333;
-      color: #888;
-    }
+.footer-box a:hover {
+  color: var(--primary);
+  padding-left: 5px;
+}
 
+.footer-logo {
+  font-size: 2.1rem;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.footer-logo span {
+  color: var(--primary);
+}
+
+.footer-text {
+  line-height: 1.7;
+  margin-bottom: 25px;
+  max-width: 280px;
+}
+
+/* Social Icons */
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: #333;
+  color: #ddd;
+  border-radius: 50%;
+  margin-right: 10px;
+  transition: all 0.3s;
+}
+
+.social-icons a:hover {
+  background: var(--accent);
+  color: white;
+  transform: translateY(-4px);
+}
+
+/* Newsletter */
+.newsletter-box {
+  display: flex;
+  margin: 20px 0;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.newsletter-box input {
+  flex: 1;
+  padding: 16px 20px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.newsletter-box button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0 32px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.newsletter-box button:hover {
+  background: #e55a00;
+}
+
+/* Bottom Bar */
+.footer-bottom {
+  margin-top: 70px;
+  padding-top: 30px;
+  border-top: 1px solid #333;
+  text-align: center;
+}
+
+.footer-bottom-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.footer-bottom-content a {
+  color: #aaa;
+  margin: 0 12px;
+  text-decoration: none;
+}
+
+.footer-bottom-content a:hover {
+  color: var(--primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    gap: 40px;
+  }
+  
+  .footer-bottom-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
     /* Responsive */
     @media (max-width: 992px) {
       .nav-menu { display: none; }
@@ -618,43 +728,186 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-box">
-        <h2 class="footer-logo">Banana<span>Recipes</span></h2>
-        <p>Discover delicious recipes from Indian, Chinese, Veg & Non-Veg cuisines. Cook smarter with Banana Recipes 🍴</p>
+  <div class="footer-container">
+    
+    <!-- Column 1: Brand -->
+    <div class="footer-box">
+      <h2 class="footer-logo">Banana<span>Recipes</span></h2>
+      <p class="footer-text">
+        Your ultimate destination for delicious homemade recipes. 
+        From quick meals to festive feasts — cook with love, eat with joy.
+      </p>
+      <div class="social-icons">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
       </div>
-      <div class="footer-box">
-        <h3>Quick Links</h3>
-        <a href="index.html">Home</a>
-        <a href="dinners.html">Dinners</a>
-        <a href="meals.html">Meals</a>
-        <a href="ingredients.html">Ingredients</a>
-        <a href="occasions.html">Occasions</a>
-        <a href="about.html">About Us</a>
-      </div>
-      <div class="footer-box">
-        <h3>Popular Categories</h3>
-        <a href="#">Indian Recipes</a>
-        <a href="#">Chinese Recipes</a>
-        <a href="#">Veg Recipes</a>
-        <a href="#">Non-Veg Recipes</a>
-        <a href="#">Desserts</a>
-      </div>
-      <div class="footer-box">
-        <h3>Subscribe</h3>
-        <p>Get latest tasty recipes directly in your inbox 🍕</p>
+    </div>
+
+    <!-- Column 2: Quick Links -->
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <a href="index.html">Home</a>
+      <a href="dinners.html">Dinner Recipes</a>
+      <a href="meals.html">All Meals</a>
+      <a href="ingredients.html">Ingredients</a>
+      <a href="occasions.html">Occasions</a>
+      <a href="cuisines.html">Cuisines</a>
+    </div>
+
+    <!-- Column 3: Explore -->
+    <div class="footer-box">
+      <h3>Explore</h3>
+      <a href="#">Breakfast Recipes</a>
+      <a href="#">Lunch Ideas</a>
+      <a href="#">Veg Recipes</a>
+      <a href="#">Non-Veg Recipes</a>
+      <a href="#">Desserts</a>
+      <a href="#">Healthy Meals</a>
+      <a href="#">30-Minute Recipes</a>
+    </div>
+
+    <!-- Column 4: Newsletter -->
+    <div class="footer-box">
+      <h3>Stay Updated</h3>
+      <p class="footer-text">
+        Get fresh recipes, cooking tips & weekly meal ideas delivered to your inbox.
+      </p>
+      <form class="newsletter-form">
         <div class="newsletter-box">
-          <input type="email" placeholder="Enter your email">
-          <button>Subscribe</button>
+          <input type="email" placeholder="Enter your email address" required>
+          <button type="submit">Subscribe</button>
         </div>
+      </form>
+      <small>We respect your inbox. Unsubscribe anytime.</small>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer-bottom">
+    <div class="footer-bottom-content">
+      <p>© 2026 Banana Recipes | All Rights Reserved ❤️</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Contact Us</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 Banana Recipes | All Rights Reserved ❤️</p>
-    </div>
-  </footer>
+  </div>
+</footer>
 
   <script>
+
+    function handleNewsletter(event) {
+        event.preventDefault();
+
+        // Get the input field
+        const emailInput = event.target.querySelector('input[type="email"]');
+        const email = emailInput.value.trim();
+        const button = event.target.querySelector('button');
+
+        // Simple email validation
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!email) {
+            showMessage("Please enter your email address", "error");
+            return;
+        }
+
+        if (!emailPattern.test(email)) {
+            showMessage("Please enter a valid email address", "error");
+            return;
+        }
+
+        // Disable button and show loading
+        const originalText = button.textContent;
+        button.textContent = "Subscribing...";
+        button.disabled = true;
+
+        // Simulate API call
+        setTimeout(() => {
+            showMessage("🎉 Thank you! You've successfully subscribed.", "success");
+            
+            // Reset form
+            emailInput.value = "";
+            button.textContent = originalText;
+            button.disabled = false;
+        }, 1500);
+    }
+
+    // Show success or error message
+    function showMessage(message, type) {
+        // Create toast notification
+        const toast = document.createElement('div');
+        toast.style.position = 'fixed';
+        toast.style.bottom = '30px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.padding = '16px 24px';
+        toast.style.borderRadius = '50px';
+        toast.style.color = 'white';
+        toast.style.fontWeight = '500';
+        toast.style.zIndex = '10000';
+        toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+        toast.style.opacity = '0';
+        toast.style.transition = 'all 0.4s ease';
+
+        if (type === "success") {
+            toast.style.background = '#22c55e';
+        } else {
+            toast.style.background = '#ef4444';
+        }
+
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        // Show animation
+        setTimeout(() => {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateX(-50%) translateY(-10px)';
+        }, 10);
+
+        // Auto hide after 4 seconds
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(-50%)';
+            setTimeout(() => toast.remove(), 400);
+        }, 4000);
+    }
+
+    // Initialize all newsletter forms
+    function initNewsletters() {
+        const newsletterForms = document.querySelectorAll('.newsletter-box');
+        
+        newsletterForms.forEach(form => {
+            // If it's inside a <form> tag, use it
+            let parentForm = form.closest('form');
+            
+            if (!parentForm) {
+                // If not in form tag, wrap it or add event to button
+                const button = form.querySelector('button');
+                if (button) {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const input = form.querySelector('input[type="email"]');
+                        if (input) {
+                            // Create temporary form for validation
+                            const tempForm = document.createElement('form');
+                            tempForm.appendChild(input.cloneNode(true));
+                            handleNewsletter({ target: tempForm, preventDefault: () => {} });
+                        }
+                    });
+                }
+            } else {
+                parentForm.addEventListener('submit', handleNewsletter);
+            }
+        });
+    }
+
+    // Run when page loads
+    document.addEventListener('DOMContentLoaded', initNewsletters);
+
     function toggleDrawer() {
       document.getElementById('drawer').classList.toggle('open');
       document.getElementById('overlay').classList.toggle('show');
