@@ -1,28 +1,513 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Features | BananaRecipes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  <style>
+    :root {
+      --primary: #ffcc00;
+      --primary-dark: #e6b800;
+      --accent: #ff6b00;
+      --text: #333333;
+      --dark: #222222;
+      --light: #fffaf0;
+    }
 
-  <link rel="stylesheet" href="style.css">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--light);
+    }
 
+    /* ==================== NAVBAR ==================== */
+    .navbar {
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 78px;
+    }
+
+    .logo h2 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 8px;
+    }
+
+    .nav-menu li a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      padding: 12px 22px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-menu li a:hover,
+    .nav-menu li a.active {
+      background: var(--primary);
+      color: #222;
+    }
+
+    .nav-icons {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--dark);
+    }
+
+    .icon-btn:hover {
+      background: #f5f5f5;
+    }
+
+    .chef-icon {
+      background: var(--accent);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hamburger {
+      font-size: 1.9rem;
+      cursor: pointer;
+      color: var(--dark);
+      display: none;
+    }
+
+    /* Drawer */
+    .drawer {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100vh;
+      background: white;
+      box-shadow: 5px 0 20px rgba(0, 0, 0, 0.15);
+      transition: left 0.4s ease;
+      z-index: 3000;
+      padding: 20px 0;
+    }
+
+    .drawer.open { left: 0; }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 25px 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .drawer-close {
+      font-size: 2.2rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .drawer-menu {
+      list-style: none;
+      padding: 15px 0;
+    }
+
+    .drawer-menu li a {
+      display: block;
+      padding: 15px 25px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .drawer-menu li a:hover,
+    .drawer-menu li a.active {
+      background: #fff8e6;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 2500;
+    }
+
+    .overlay.show { display: block; }
+
+    /* Search Overlay */
+    .search-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 4000;
+    }
+
+    .search-box {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 50px;
+      width: 90%;
+      max-width: 600px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 1.1rem;
+    }
+
+    /* ==================== HERO ==================== */
+    .features-hero {
+      position: relative;
+      height: 75vh;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .features-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.55)), 
+                  url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1600') center/cover no-repeat;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .hero-tag {
+      background: rgba(255, 204, 0, 0.95);
+      color: #222;
+      padding: 8px 22px;
+      border-radius: 50px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+
+    .hero-content h1 {
+      font-size: 3.3rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero-content p {
+      font-size: 1.25rem;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn, .secondary-btn {
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .primary-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+    }
+
+    .secondary-btn {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    /* Features Section */
+    section {
+      padding: 75px 5%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--dark);
+    }
+
+    .section-title p {
+      font-size: 1.1rem;
+      color: #666;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 35px 25px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.4s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .feature-card i {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 12px;
+      font-size: 1.45rem;
+    }
+
+    /* Highlight Section */
+    .feature-highlight {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 80px 5%;
+    }
+
+    .feature-left img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .feature-right span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .feature-right h2 {
+      font-size: 2.4rem;
+      margin: 15px 0 20px;
+    }
+
+    .feature-right ul {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .feature-right ul li {
+      padding: 8px 0;
+      font-weight: 500;
+    }
+
+    /* Stats */
+    .feature-stats {
+      background: white;
+      padding: 60px 5%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
+
+    .stat-box h2 {
+      font-size: 2.8rem;
+      color: var(--accent);
+    }
+
+    /* Newsletter */
+    .newsletter {
+      text-align: center;
+      background: white;
+      padding: 70px 20px;
+      margin: 40px auto;
+      max-width: 800px;
+      border-radius: 20px;
+    }
+
+    .newsletter-box {
+      display: flex;
+      max-width: 500px;
+      margin: 25px auto;
+      border-radius: 50px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .newsletter-box input {
+      flex: 1;
+      padding: 16px 20px;
+      border: none;
+      outline: none;
+    }
+
+    .newsletter-box button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0 35px;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    .footer {
+      background: #1a1a1a;
+      color: #ddd;
+      padding: 80px 5% 40px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 50px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-size: 2.1rem;
+      color: white;
+    }
+
+    .footer-logo span {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 70px;
+      padding-top: 30px;
+      border-top: 1px solid #333;
+      color: #888;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .nav-menu { display: none; }
+      .hamburger { display: block; }
+      .feature-highlight { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-content h1 { font-size: 2.6rem; }
+    }
+  </style>
 </head>
-
 <body>
 
   <!-- NAVBAR -->
-
   <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <h2>Banana<span>Recipes</span></h2>
+      </div>
 
-    <div class="logo">
-      <h2>Banana<span>Recipes</span></h2>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dinners.html">Dinners</a></li>
+        <li><a href="meals.html">Meals</a></li>
+        <li><a href="ingredients.html">Ingredients</a></li>
+        <li><a href="occasions.html">Occasions</a></li>
+        <li><a href="cuisines.html">Cuisines</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="features.html" class="active">Features</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+
+      <div class="nav-icons">
+        <button onclick="toggleSearch()" class="icon-btn">
+          <i class="fas fa-search"></i>
+        </button>
+       
+        <div class="hamburger" onclick="toggleDrawer()">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
     </div>
+  </nav>
 
-    <ul class="nav-menu">
+  <!-- Drawer -->
+  <div class="overlay" id="overlay" onclick="toggleDrawer()"></div>
+  <div class="drawer" id="drawer">
+    <div class="drawer-header">
+      <h2>Banana<span>Recipes</span></h2>
+      <span class="drawer-close" onclick="toggleDrawer()">×</span>
+    </div>
+    <ul class="drawer-menu">
       <li><a href="index.html">Home</a></li>
       <li><a href="dinners.html">Dinners</a></li>
       <li><a href="meals.html">Meals</a></li>
@@ -30,330 +515,186 @@
       <li><a href="occasions.html">Occasions</a></li>
       <li><a href="cuisines.html">Cuisines</a></li>
       <li><a href="news.html">News</a></li>
-      <li><a href="features.html" class="active">Features</a></li>
+      <li><a href="features.html">Features</a></li>
       <li><a href="about.html">About Us</a></li>
     </ul>
-
-    <div class="nav-icons">
-
-      <button onclick="toggleSearch()" class="icon-btn">
-        <i class="fas fa-search"></i>
-      </button>
-
-      <button onclick="openChefModal()" class="icon-btn chef-icon">
-        <i class="fas fa-robot"></i>
-        <span>Ask Chef</span>
-      </button>
-
-      <button onclick="toggleMobileMenu()" class="icon-btn">
-        <i class="fas fa-bars"></i>
-      </button>
-
-    </div>
-
-  </nav>
-
-
-  <!-- SEARCH OVERLAY -->
-
-  <div id="searchOverlay" class="search-overlay">
-
-    <div class="search-popup">
-
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Search recipes..."
-      >
-
-      <button onclick="searchRecipes()">
-        Search
-      </button>
-
-      <button onclick="toggleSearch()" class="close-search">
-        ✕
-      </button>
-
-    </div>
-
   </div>
 
+  <!-- Search Overlay -->
+  <div id="searchOverlay" class="search-overlay">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search recipes..." />
+      <button onclick="searchRecipes()">Search</button>
+      <button onclick="toggleSearch()" class="close-btn">✕</button>
+    </div>
+  </div>
 
   <!-- HERO -->
-
   <section class="features-hero">
-
-    <div class="overlay"></div>
-
     <div class="hero-content">
-
-      <span class="hero-tag">
-        ✨ Smart Food Experience
-      </span>
-
-      <h1>
-        Amazing Features For Food Lovers
-      </h1>
-
-      <p>
-        Discover AI-powered recipe search,
-        meal planning, trending dishes
-        and smart cooking tools.
-      </p>
-
+      <span class="hero-tag">✨ Smart Food Experience</span>
+      <h1>Amazing Features For Food Lovers</h1>
+      <p>Discover AI-powered recipe search, meal planning, trending dishes and smart cooking tools.</p>
       <div class="hero-buttons">
-
-        <button onclick="exploreFeatures()" class="primary-btn">
-          Explore Features
-        </button>
-
-        <button onclick="tryChef()" class="secondary-btn">
-          Try AI Chef
-        </button>
-
+        <button onclick="exploreFeatures()" class="primary-btn">Explore Features</button>
+        <button onclick="tryChef()" class="secondary-btn">Try AI Chef</button>
       </div>
-
     </div>
-
   </section>
 
-
-  <!-- FEATURES -->
-
+  <!-- FEATURES GRID -->
   <section class="features-section">
-
     <div class="section-title">
-
       <h2>Our Features</h2>
-
-      <p>
-        Modern tools designed for food lovers.
-      </p>
-
+      <p>Modern tools designed for food lovers.</p>
     </div>
-
     <div class="features-grid">
-
       <div class="feature-card">
         <i class="fas fa-robot"></i>
         <h3>AI Chef</h3>
-        <p>
-          Ask AI for instant recipe ideas and cooking help.
-        </p>
+        <p>Ask AI for instant recipe ideas and cooking help.</p>
       </div>
-
       <div class="feature-card">
         <i class="fas fa-search"></i>
         <h3>Smart Search</h3>
-        <p>
-          Search recipes by ingredients or cuisine type.
-        </p>
+        <p>Search recipes by ingredients or cuisine type.</p>
       </div>
-
       <div class="feature-card">
         <i class="fas fa-heart"></i>
         <h3>Favorites</h3>
-        <p>
-          Save your favorite recipes anytime easily.
-        </p>
+        <p>Save your favorite recipes anytime easily.</p>
       </div>
-
       <div class="feature-card">
         <i class="fas fa-fire"></i>
         <h3>Trending Recipes</h3>
-        <p>
-          Explore viral and trending dishes daily.
-        </p>
+        <p>Explore viral and trending dishes daily.</p>
       </div>
-
       <div class="feature-card">
         <i class="fas fa-utensils"></i>
         <h3>Meal Planner</h3>
-        <p>
-          Plan breakfast, lunch and dinner quickly.
-        </p>
+        <p>Plan breakfast, lunch and dinner quickly.</p>
       </div>
-
       <div class="feature-card">
         <i class="fas fa-video"></i>
         <h3>Cooking Videos</h3>
-        <p>
-          Watch recipe tutorials and improve cooking skills.
-        </p>
+        <p>Watch recipe tutorials and improve cooking skills.</p>
       </div>
-
     </div>
-
   </section>
 
-
   <!-- HIGHLIGHT -->
-
   <section class="feature-highlight">
-
     <div class="feature-left">
-
-      <img
-      src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1400"
-      alt="Food">
-
+      <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1400" alt="Smart Cooking">
     </div>
-
     <div class="feature-right">
-
       <span>Why Choose Us</span>
-
-      <h2>
-        Smart Cooking Experience
-      </h2>
-
-      <p>
-        Banana Recipes combines modern technology
-        with delicious food experiences.
-      </p>
-
+      <h2>Smart Cooking Experience</h2>
+      <p>Banana Recipes combines modern technology with delicious food experiences.</p>
       <ul>
         <li>✔ AI Recipe Suggestions</li>
         <li>✔ Fast Recipe Search</li>
         <li>✔ Beautiful Recipe UI</li>
         <li>✔ Trending Food Updates</li>
       </ul>
-
-      <button>
-        Learn More
-      </button>
-
+      <button class="primary-btn">Learn More</button>
     </div>
-
   </section>
 
-
   <!-- STATS -->
-
   <section class="feature-stats">
-
     <div class="stat-box">
       <h2>10K+</h2>
       <p>Recipes</p>
     </div>
-
     <div class="stat-box">
       <h2>5K+</h2>
       <p>Daily Users</p>
     </div>
-
     <div class="stat-box">
       <h2>500+</h2>
       <p>Food Categories</p>
     </div>
-
     <div class="stat-box">
       <h2>24/7</h2>
       <p>AI Support</p>
     </div>
-
   </section>
-
 
   <!-- NEWSLETTER -->
-
   <section class="newsletter">
-
     <h2>Get New Updates 🍴</h2>
-
-    <p>
-      Subscribe for latest features and food news.
-    </p>
-
+    <p>Subscribe for latest features and food news.</p>
     <div class="newsletter-box">
-
-      <input
-      type="email"
-      placeholder="Enter your email">
-
-      <button onclick="subscribeFeature()">
-        Subscribe
-      </button>
-
+      <input type="email" placeholder="Enter your email">
+      <button>Subscribe</button>
     </div>
-
   </section>
 
-
   <!-- FOOTER -->
-
   <footer class="footer">
-  <div class="footer-container">
-
-    <!-- BRAND -->
-    <div class="footer-box">
-      <h2 class="footer-logo">
-        Banana<span>Recipes</span>
-      </h2>
-
-      <p class="footer-text">
-        Discover delicious recipes from Indian, Chinese, Veg & Non-Veg cuisines.
-        Cook smarter with Banana Recipes 🍴
-      </p>
-
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
+    <div class="footer-container">
+      <div class="footer-box">
+        <h2 class="footer-logo">Banana<span>Recipes</span></h2>
+        <p>Discover delicious recipes from Indian, Chinese, Veg & Non-Veg cuisines. Cook smarter with Banana Recipes 🍴</p>
+      </div>
+      <div class="footer-box">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="dinners.html">Dinners</a>
+        <a href="meals.html">Meals</a>
+        <a href="ingredients.html">Ingredients</a>
+        <a href="about.html">About Us</a>
+      </div>
+      <div class="footer-box">
+        <h3>Popular Categories</h3>
+        <a href="#">Indian Recipes</a>
+        <a href="#">Chinese Recipes</a>
+        <a href="#">Veg Recipes</a>
+        <a href="#">Non-Veg Recipes</a>
+        <a href="#">Desserts</a>
+      </div>
+      <div class="footer-box">
+        <h3>Subscribe</h3>
+        <p>Get latest tasty recipes directly in your inbox 🍕</p>
+        <div class="newsletter-box">
+          <input type="email" placeholder="Enter your email">
+          <button>Subscribe</button>
+        </div>
       </div>
     </div>
-
-    <!-- QUICK LINKS -->
-    <div class="footer-box">
-      <h3>Quick Links</h3>
-
-      <a href="index.html">Home</a>
-      <a href="dinners.html">Dinners</a>
-      <a href="meals.html">Meals</a>
-      <a href="ingredients.html">Ingredients</a>
-      <a href="about.html">About Us</a>
+    <div class="footer-bottom">
+      <p>© 2026 Banana Recipes | All Rights Reserved ❤️</p>
     </div>
+  </footer>
 
-    <!-- CATEGORIES -->
-    <div class="footer-box">
-      <h3>Popular Categories</h3>
+  <script>
+    function toggleDrawer() {
+      document.getElementById('drawer').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('show');
+    }
 
-      <a href="#">Indian Recipes</a>
-      <a href="#">Chinese Recipes</a>
-      <a href="#">Veg Recipes</a>
-      <a href="#">Non-Veg Recipes</a>
-      <a href="#">Desserts</a>
-    </div>
+    function toggleSearch() {
+      const overlay = document.getElementById('searchOverlay');
+      overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+    }
 
-    <!-- NEWSLETTER -->
-    <div class="footer-box">
-      <h3>Subscribe</h3>
+    function openChefModal() {
+      alert("AI Chef Modal is opening... (Demo)");
+    }
 
-      <p class="footer-text">
-        Get latest tasty recipes directly in your inbox 🍕
-      </p>
+    function searchRecipes() {
+      alert("Searching... (Demo)");
+      toggleSearch();
+    }
 
-      <div class="footer-newsletter">
-        <input type="email" placeholder="Enter your email">
-        <button>Subscribe</button>
-      </div>
-    </div>
+    function exploreFeatures() {
+      alert("Exploring all features... (Demo)");
+    }
 
-  </div>
-
-  <!-- BOTTOM -->
-  <div class="footer-bottom">
-    <p>
-      © 2026 Banana Recipes | All Rights Reserved ❤️
-    </p>
-  </div>
-</footer>
-
-
-  <!-- SCRIPT -->
-
-  <script src="script.js"></script>
-
+    function tryChef() {
+      alert("Opening AI Chef... (Demo)");
+    }
+  </script>
 </body>
 </html>
