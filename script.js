@@ -3,8 +3,6 @@
 // Optimized & Clean JavaScript
 // ======================================================
 
-
-
 // ===== MOBILE MENU =====
 
 // document.addEventListener("DOMContentLoaded", function () {
@@ -90,1109 +88,735 @@
 
 // });
 
-
-
-
 // ===== SEARCH OVERLAY =====
 
 function toggleSearch() {
+  const overlay = document.getElementById("searchOverlay");
 
-    const overlay = document.getElementById("searchOverlay");
+  if (!overlay) return;
 
-    if (!overlay) return;
-
-    overlay.style.display =
-        overlay.style.display === "flex"
-        ? "none"
-        : "flex";
-
+  overlay.style.display = overlay.style.display === "flex" ? "none" : "flex";
 }
 
 function toggleMobileMenu() {
-    const navMenu = document.querySelector('.nav-menu');
-    if (!navMenu) return;
+  const navMenu = document.querySelector(".nav-menu");
+  if (!navMenu) return;
 
-    navMenu.classList.toggle('active');
+  navMenu.classList.toggle("active");
 
-    const menuIcon = document.querySelector('.nav-icons .icon-btn i.fa-bars, .nav-icons .icon-btn i.fa-times');
-    if (menuIcon) {
-        menuIcon.classList.toggle('fa-bars');
-        menuIcon.classList.toggle('fa-times');
-    }
+  const menuIcon = document.querySelector(
+    ".nav-icons .icon-btn i.fa-bars, .nav-icons .icon-btn i.fa-times",
+  );
+  if (menuIcon) {
+    menuIcon.classList.toggle("fa-bars");
+    menuIcon.classList.toggle("fa-times");
+  }
 
-    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'visible';
+  document.body.style.overflow = navMenu.classList.contains("active")
+    ? "hidden"
+    : "visible";
 }
 
 function toggleMenu() {
-    toggleMobileMenu();
+  toggleMobileMenu();
 }
-
-
 
 // ===== SEARCH RECIPES =====
 
 function searchRecipes() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
 
-    const input = document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase();
+  const cards = document.querySelectorAll(
+    ".recipe-card, .meal-card, .ingredient-card, .ingredient-box",
+  );
 
-    const cards = document.querySelectorAll(
-        ".recipe-card, .meal-card, .ingredient-card, .ingredient-box"
-    );
+  cards.forEach((card) => {
+    const title = card.querySelector("h3").innerText.toLowerCase();
 
-    cards.forEach((card) => {
-
-        const title =
-            card.querySelector("h3").innerText.toLowerCase();
-
-        if (title.includes(input)) {
-
-            card.style.display = "block";
-
-        } else {
-
-            card.style.display = "none";
-
-        }
-
-    });
-
+    if (title.includes(input)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
 }
-
-
 
 // ===== VIEW RECIPE =====
 
 function viewRecipe(recipeName) {
-
-    alert("🍽️ Opening Recipe: " + recipeName);
-
+  alert("🍽️ Opening Recipe: " + recipeName);
 }
-
-
 
 // ===== SCROLL TO RECIPES =====
 
 function scrollToRecipes() {
+  const section = document.getElementById("recipesSection");
 
-    const section =
-        document.getElementById("recipesSection");
-
-    if (section) {
-
-        section.scrollIntoView({
-            behavior: "smooth"
-        });
-
-    }
-
+  if (section) {
+    section.scrollIntoView({
+      behavior: "smooth",
+    });
+  }
 }
-
-
 
 // ===== AI CHEF MODAL =====
 
 function openChefModal() {
+  const modal = document.getElementById("chefModal");
 
-    const modal =
-        document.getElementById("chefModal");
-
-    if (modal) {
-
-        modal.style.display = "flex";
-
-    } else {
-
-        alert("👨‍🍳 AI Chef Coming Soon!");
-
-    }
-
+  if (modal) {
+    modal.style.display = "flex";
+  } else {
+    alert("👨‍🍳 AI Chef Coming Soon!");
+  }
 }
-
 
 function closeChefModal() {
+  const modal = document.getElementById("chefModal");
 
-    const modal =
-        document.getElementById("chefModal");
-
-    if (modal) {
-
-        modal.style.display = "none";
-
-    }
-
+  if (modal) {
+    modal.style.display = "none";
+  }
 }
-
-
 
 // ===== AI CHEF CHAT =====
 
 function sendChefMessage() {
+  const input = document.getElementById("chatInput");
 
-    const input =
-        document.getElementById("chatInput");
+  const chatMessages = document.getElementById("chatMessages");
 
-    const chatMessages =
-        document.getElementById("chatMessages");
+  if (!input || !chatMessages) return;
 
-    if (!input || !chatMessages) return;
+  const userMessage = input.value.trim();
 
-    const userMessage = input.value.trim();
+  if (userMessage === "") return;
 
-    if (userMessage === "") return;
+  // USER MESSAGE
 
+  const userDiv = document.createElement("div");
 
+  userDiv.classList.add("message", "user");
 
-    // USER MESSAGE
+  userDiv.innerText = userMessage;
 
-    const userDiv = document.createElement("div");
+  chatMessages.appendChild(userDiv);
 
-    userDiv.classList.add("message", "user");
+  // BOT MESSAGE
 
-    userDiv.innerText = userMessage;
+  const botDiv = document.createElement("div");
 
-    chatMessages.appendChild(userDiv);
+  botDiv.classList.add("message", "bot");
 
+  let reply = "";
 
+  const message = userMessage.toLowerCase();
 
-    // BOT MESSAGE
+  if (message.includes("banana")) {
+    reply = "🍌 Try Banana Pancakes, Banana Shake, and Banana Cake.";
+  } else if (message.includes("paneer")) {
+    reply = "🧀 Paneer Butter Masala and Chilli Paneer are great options.";
+  } else if (message.includes("chicken")) {
+    reply = "🍗 Try Butter Chicken or Chinese Chilli Chicken.";
+  } else if (message.includes("breakfast")) {
+    reply = "🥞 Healthy breakfast ideas: Oats, Sandwich & Pancakes.";
+  } else {
+    reply = "👨‍🍳 Delicious idea! Explore more recipes on BananaRecipes.";
+  }
 
-    const botDiv = document.createElement("div");
+  setTimeout(() => {
+    botDiv.innerText = reply;
 
-    botDiv.classList.add("message", "bot");
+    chatMessages.appendChild(botDiv);
 
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }, 700);
 
-
-    let reply = "";
-
-    const message = userMessage.toLowerCase();
-
-
-
-    if (message.includes("banana")) {
-
-        reply =
-        "🍌 Try Banana Pancakes, Banana Shake, and Banana Cake.";
-
-    }
-
-    else if (message.includes("paneer")) {
-
-        reply =
-        "🧀 Paneer Butter Masala and Chilli Paneer are great options.";
-
-    }
-
-    else if (message.includes("chicken")) {
-
-        reply =
-        "🍗 Try Butter Chicken or Chinese Chilli Chicken.";
-
-    }
-
-    else if (message.includes("breakfast")) {
-
-        reply =
-        "🥞 Healthy breakfast ideas: Oats, Sandwich & Pancakes.";
-
-    }
-
-    else {
-
-        reply =
-        "👨‍🍳 Delicious idea! Explore more recipes on BananaRecipes.";
-
-    }
-
-
-
-    setTimeout(() => {
-
-        botDiv.innerText = reply;
-
-        chatMessages.appendChild(botDiv);
-
-        chatMessages.scrollTop =
-        chatMessages.scrollHeight;
-
-    }, 700);
-
-
-
-    input.value = "";
-
+  input.value = "";
 }
-
-
 
 // ===== ENTER KEY SUPPORT =====
 
-const chatInput =
-document.getElementById("chatInput");
+const chatInput = document.getElementById("chatInput");
 
 if (chatInput) {
-
-    chatInput.addEventListener("keypress", (e) => {
-
-        if (e.key === "Enter") {
-
-            sendChefMessage();
-
-        }
-
-    });
-
+  chatInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      sendChefMessage();
+    }
+  });
 }
-
-
 
 // ===== NEWSLETTER =====
 
-const subscribeBtn =
-document.querySelector(".newsletter-box button");
+const subscribeBtn = document.querySelector(".newsletter-box button");
 
 if (subscribeBtn) {
+  subscribeBtn.addEventListener("click", () => {
+    const email = document.querySelector(".newsletter-box input").value;
 
-    subscribeBtn.addEventListener("click", () => {
+    if (email === "") {
+      alert("📧 Please enter your email");
+    } else {
+      alert("🎉 Thanks for subscribing!");
 
-        const email =
-        document.querySelector(".newsletter-box input").value;
-
-        if (email === "") {
-
-            alert("📧 Please enter your email");
-
-        } else {
-
-            alert("🎉 Thanks for subscribing!");
-
-            document.querySelector(".newsletter-box input").value = "";
-
-        }
-
-    });
-
+      document.querySelector(".newsletter-box input").value = "";
+    }
+  });
 }
-
-
 
 // ===== HERO BUTTONS =====
 
-const heroButtons =
-document.querySelectorAll(".primary-btn, .secondary-btn");
+const heroButtons = document.querySelectorAll(".primary-btn, .secondary-btn");
 
 heroButtons.forEach((btn) => {
-
-    btn.addEventListener("click", () => {
-
-        if (btn.classList.contains("primary-btn")) {
-
-            window.scrollTo({
-                top: 700,
-                behavior: "smooth"
-            });
-
-        } else {
-
-            alert("🎥 Recipe videos coming soon!");
-
-        }
-
-    });
-
+  btn.addEventListener("click", () => {
+    if (btn.classList.contains("primary-btn")) {
+      window.scrollTo({
+        top: 700,
+        behavior: "smooth",
+      });
+    } else {
+      alert("🎥 Recipe videos coming soon!");
+    }
+  });
 });
-
-
 
 // ===== READ MORE BUTTONS =====
 
-const readButtons =
-document.querySelectorAll(".ingredient-info button");
+const readButtons = document.querySelectorAll(".ingredient-info button");
 
 readButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const ingredient = btn.parentElement.querySelector("h3").innerText;
 
-    btn.addEventListener("click", () => {
-
-        const ingredient =
-        btn.parentElement.querySelector("h3").innerText;
-
-        alert("📖 Opening details for " + ingredient);
-
-    });
-
+    alert("📖 Opening details for " + ingredient);
+  });
 });
-
-
 
 // ===== BUTTON CLICK EFFECT =====
 
-const buttons =
-document.querySelectorAll("button");
+const buttons = document.querySelectorAll("button");
 
 buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    button.style.transform = "scale(0.95)";
 
-    button.addEventListener("click", () => {
-
-        button.style.transform = "scale(0.95)";
-
-        setTimeout(() => {
-
-            button.style.transform = "scale(1)";
-
-        }, 150);
-
-    });
-
+    setTimeout(() => {
+      button.style.transform = "scale(1)";
+    }, 150);
+  });
 });
-
-
 
 // ===== CARD HOVER EFFECT =====
 
-const cards =
-document.querySelectorAll(
-".recipe-card, .meal-card, .category-card, .ingredient-card, .ingredient-box"
+const cards = document.querySelectorAll(
+  ".recipe-card, .meal-card, .category-card, .ingredient-card, .ingredient-box",
 );
 
 cards.forEach((card) => {
+  card.addEventListener("mouseenter", () => {
+    card.style.transform = "translateY(-10px)";
+    card.style.transition = ".4s";
+  });
 
-    card.addEventListener("mouseenter", () => {
-
-        card.style.transform = "translateY(-10px)";
-        card.style.transition = ".4s";
-
-    });
-
-    card.addEventListener("mouseleave", () => {
-
-        card.style.transform = "translateY(0px)";
-
-    });
-
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "translateY(0px)";
+  });
 });
-
-
 
 // ===== SOCIAL ICON EFFECT =====
 
-const socialIcons =
-document.querySelectorAll(".social-icons i");
+const socialIcons = document.querySelectorAll(".social-icons i");
 
 socialIcons.forEach((icon) => {
+  icon.addEventListener("mouseenter", () => {
+    icon.style.transform = "translateY(-5px)";
+    icon.style.transition = ".3s";
+  });
 
-    icon.addEventListener("mouseenter", () => {
-
-        icon.style.transform = "translateY(-5px)";
-        icon.style.transition = ".3s";
-
-    });
-
-    icon.addEventListener("mouseleave", () => {
-
-        icon.style.transform = "translateY(0px)";
-
-    });
-
+  icon.addEventListener("mouseleave", () => {
+    icon.style.transform = "translateY(0px)";
+  });
 });
-
-
 
 // ===== CLOSE OVERLAY / MODAL =====
 
 window.addEventListener("click", (e) => {
+  const searchOverlay = document.getElementById("searchOverlay");
 
-    const searchOverlay =
-    document.getElementById("searchOverlay");
+  const chefModal = document.getElementById("chefModal");
 
-    const chefModal =
-    document.getElementById("chefModal");
+  if (e.target === searchOverlay) {
+    searchOverlay.style.display = "none";
+  }
 
-    if (e.target === searchOverlay) {
-
-        searchOverlay.style.display = "none";
-
-    }
-
-    if (e.target === chefModal) {
-
-        chefModal.style.display = "none";
-
-    }
-
+  if (e.target === chefModal) {
+    chefModal.style.display = "none";
+  }
 });
-
-
 
 // ===== NAVBAR SCROLL EFFECT =====
 
 window.addEventListener("scroll", () => {
+  const navbar = document.querySelector(".navbar");
 
-    const navbar =
-    document.querySelector(".navbar");
+  if (!navbar) return;
 
-    if (!navbar) return;
+  if (window.scrollY > 50) {
+    navbar.style.background = "rgba(255,255,255,0.98)";
 
-    if (window.scrollY > 50) {
+    navbar.style.boxShadow = "0 10px 30px rgba(0,0,0,0.1)";
+  } else {
+    navbar.style.background = "rgba(255,255,255,0.95)";
 
-        navbar.style.background =
-        "rgba(255,255,255,0.98)";
-
-        navbar.style.boxShadow =
-        "0 10px 30px rgba(0,0,0,0.1)";
-
-    }
-
-    else {
-
-        navbar.style.background =
-        "rgba(255,255,255,0.95)";
-
-        navbar.style.boxShadow =
-        "0 5px 20px rgba(0,0,0,0.08)";
-
-    }
-
+    navbar.style.boxShadow = "0 5px 20px rgba(0,0,0,0.08)";
+  }
 });
-
-
 
 // ===== PAGE LOAD EFFECT =====
 
 window.addEventListener("load", () => {
-
-    document.body.style.opacity = "1";
-
+  document.body.style.opacity = "1";
 });
-
 
 // ======================================================
 // EXTRA FEATURES FOR BANANARECIPES
 // Add below main script.js
 // ======================================================
 
-
-
 // ===== AUTO CLOSE MOBILE MENU =====
 
-const navLinks =
-document.querySelectorAll(".nav-menu a");
+const navLinks = document.querySelectorAll(".nav-menu a");
 
-navLinks.forEach((link)=>{
+navLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    const menu = document.querySelector(".nav-menu");
 
-    link.addEventListener("click",()=>{
-
-        const menu =
-        document.querySelector(".nav-menu");
-
-        if(window.innerWidth < 1100){
-
-            menu.style.display = "none";
-            menu.classList.remove("active-menu");
-
-        }
-
-    });
-
+    if (window.innerWidth < 1100) {
+      menu.style.display = "none";
+      menu.classList.remove("active-menu");
+    }
+  });
 });
-
-
 
 // ===== ACTIVE NAV LINK =====
 
-const currentPage =
-window.location.pathname.split("/").pop();
+const currentPage = window.location.pathname.split("/").pop();
 
-navLinks.forEach((link)=>{
+navLinks.forEach((link) => {
+  const linkPage = link.getAttribute("href");
 
-    const linkPage =
-    link.getAttribute("href");
-
-    if(linkPage === currentPage){
-
-        link.classList.add("active");
-
-    }
-
+  if (linkPage === currentPage) {
+    link.classList.add("active");
+  }
 });
-
-
 
 // ===== SMOOTH SCROLL FOR BUTTONS =====
 
-const scrollButtons =
-document.querySelectorAll(".scroll-btn");
+const scrollButtons = document.querySelectorAll(".scroll-btn");
 
-scrollButtons.forEach((btn)=>{
+scrollButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const target = document.querySelector(btn.dataset.target);
 
-    btn.addEventListener("click",()=>{
-
-        const target =
-        document.querySelector(btn.dataset.target);
-
-        if(target){
-
-            target.scrollIntoView({
-                behavior:"smooth"
-            });
-
-        }
-
-    });
-
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  });
 });
-
-
 
 // ===== LAZY IMAGE ANIMATION =====
 
-const images =
-document.querySelectorAll("img");
+const images = document.querySelectorAll("img");
 
-images.forEach((img)=>{
-
-    img.addEventListener("load",()=>{
-
-        img.style.opacity = "1";
-        img.style.transition = "0.5s";
-
-    });
-
+images.forEach((img) => {
+  img.addEventListener("load", () => {
+    img.style.opacity = "1";
+    img.style.transition = "0.5s";
+  });
 });
-
-
 
 // ===== SIMPLE LOADER =====
 
-window.addEventListener("load",()=>{
+window.addEventListener("load", () => {
+  const loader = document.querySelector(".loader");
 
-    const loader =
-    document.querySelector(".loader");
+  if (loader) {
+    loader.style.opacity = "0";
 
-    if(loader){
-
-        loader.style.opacity = "0";
-
-        setTimeout(()=>{
-
-            loader.style.display = "none";
-
-        },500);
-
-    }
-
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 500);
+  }
 });
-
-
 
 // ===== SEARCH ENTER SUPPORT =====
 
-const searchInput =
-document.getElementById("searchInput");
+const searchInput = document.getElementById("searchInput");
 
-if(searchInput){
-
-    searchInput.addEventListener("keypress",(e)=>{
-
-        if(e.key === "Enter"){
-
-            searchRecipes();
-
-        }
-
-    });
-
+if (searchInput) {
+  searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      searchRecipes();
+    }
+  });
 }
-
-
 
 // ===== RECIPE FAVORITE BUTTON =====
 
-const favoriteButtons =
-document.querySelectorAll(".favorite-btn");
+const favoriteButtons = document.querySelectorAll(".favorite-btn");
 
-favoriteButtons.forEach((btn)=>{
+favoriteButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    btn.classList.toggle("active-favorite");
 
-    btn.addEventListener("click",()=>{
-
-        btn.classList.toggle("active-favorite");
-
-        if(btn.classList.contains("active-favorite")){
-
-            btn.innerHTML = "❤️";
-
-        }else{
-
-            btn.innerHTML = "🤍";
-
-        }
-
-    });
-
+    if (btn.classList.contains("active-favorite")) {
+      btn.innerHTML = "❤️";
+    } else {
+      btn.innerHTML = "🤍";
+    }
+  });
 });
-
-
 
 // ===== RECIPE SHARE BUTTON =====
 
-const shareButtons =
-document.querySelectorAll(".share-btn");
+const shareButtons = document.querySelectorAll(".share-btn");
 
-shareButtons.forEach((btn)=>{
+shareButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    navigator.clipboard.writeText(window.location.href);
 
-    btn.addEventListener("click",()=>{
-
-        navigator.clipboard.writeText(window.location.href);
-
-        alert("🔗 Recipe link copied!");
-
-    });
-
+    alert("🔗 Recipe link copied!");
+  });
 });
-
-
 
 // ===== DARK MODE =====
 
-const darkModeBtn =
-document.querySelector(".dark-mode-btn");
+const darkModeBtn = document.querySelector(".dark-mode-btn");
 
-if(darkModeBtn){
-
-    darkModeBtn.addEventListener("click",()=>{
-
-        document.body.classList.toggle("dark-mode");
-
-    });
-
+if (darkModeBtn) {
+  darkModeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+  });
 }
-
-
 
 // ===== COUNTER ANIMATION =====
 
-const counters =
-document.querySelectorAll(".counter");
+const counters = document.querySelectorAll(".counter");
 
-counters.forEach((counter)=>{
+counters.forEach((counter) => {
+  counter.innerText = "0";
 
-    counter.innerText = "0";
+  const updateCounter = () => {
+    const target = +counter.getAttribute("data-target");
 
-    const updateCounter = ()=>{
+    const current = +counter.innerText;
 
-        const target = +counter.getAttribute("data-target");
+    const increment = target / 100;
 
-        const current = +counter.innerText;
+    if (current < target) {
+      counter.innerText = `${Math.ceil(current + increment)}`;
 
-        const increment = target / 100;
+      setTimeout(updateCounter, 20);
+    } else {
+      counter.innerText = target;
+    }
+  };
 
-        if(current < target){
-
-            counter.innerText =
-            `${Math.ceil(current + increment)}`;
-
-            setTimeout(updateCounter,20);
-
-        }else{
-
-            counter.innerText = target;
-
-        }
-
-    };
-
-    updateCounter();
-
+  updateCounter();
 });
-
-
 
 // ===== SCROLL TO TOP BUTTON =====
 
-const topBtn =
-document.querySelector(".top-btn");
+const topBtn = document.querySelector(".top-btn");
 
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll", () => {
+  if (!topBtn) return;
 
-    if(!topBtn) return;
-
-    if(window.scrollY > 300){
-
-        topBtn.style.display = "flex";
-
-    }else{
-
-        topBtn.style.display = "none";
-
-    }
-
+  if (window.scrollY > 300) {
+    topBtn.style.display = "flex";
+  } else {
+    topBtn.style.display = "none";
+  }
 });
 
-if(topBtn){
-
-    topBtn.addEventListener("click",()=>{
-
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
-
+if (topBtn) {
+  topBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
     });
-
+  });
 }
-
-
 
 // ===== TYPING EFFECT =====
 
-const typingText =
-document.querySelector(".typing-text");
+const typingText = document.querySelector(".typing-text");
 
-if(typingText){
+if (typingText) {
+  const words = [
+    "Healthy Recipes",
+    "Delicious Meals",
+    "Fresh Ingredients",
+    "Tasty Dinners",
+  ];
 
-    const words = [
-        "Healthy Recipes",
-        "Delicious Meals",
-        "Fresh Ingredients",
-        "Tasty Dinners"
-    ];
+  let wordIndex = 0;
+  let charIndex = 0;
 
-    let wordIndex = 0;
-    let charIndex = 0;
+  function typeEffect() {
+    if (charIndex < words[wordIndex].length) {
+      typingText.innerHTML += words[wordIndex].charAt(charIndex);
 
-    function typeEffect(){
+      charIndex++;
 
-        if(charIndex < words[wordIndex].length){
-
-            typingText.innerHTML +=
-            words[wordIndex].charAt(charIndex);
-
-            charIndex++;
-
-            setTimeout(typeEffect,100);
-
-        }else{
-
-            setTimeout(eraseEffect,1500);
-
-        }
-
+      setTimeout(typeEffect, 100);
+    } else {
+      setTimeout(eraseEffect, 1500);
     }
+  }
 
-    function eraseEffect(){
+  function eraseEffect() {
+    if (charIndex > 0) {
+      typingText.innerHTML = words[wordIndex].substring(0, charIndex - 1);
 
-        if(charIndex > 0){
+      charIndex--;
 
-            typingText.innerHTML =
-            words[wordIndex].substring(0,charIndex-1);
+      setTimeout(eraseEffect, 50);
+    } else {
+      wordIndex++;
 
-            charIndex--;
+      if (wordIndex >= words.length) {
+        wordIndex = 0;
+      }
 
-            setTimeout(eraseEffect,50);
-
-        }else{
-
-            wordIndex++;
-
-            if(wordIndex >= words.length){
-
-                wordIndex = 0;
-
-            }
-
-            setTimeout(typeEffect,300);
-
-        }
-
+      setTimeout(typeEffect, 300);
     }
+  }
 
-    typeEffect();
-
+  typeEffect();
 }
-
-
 
 // ===== REVEAL ON SCROLL =====
 
-const revealElements =
-document.querySelectorAll(
-".recipe-card, .meal-card, .ingredient-card, .ingredient-box"
+const revealElements = document.querySelectorAll(
+  ".recipe-card, .meal-card, .ingredient-card, .ingredient-box",
 );
 
-window.addEventListener("scroll",revealOnScroll);
+window.addEventListener("scroll", revealOnScroll);
 
-function revealOnScroll(){
+function revealOnScroll() {
+  const windowHeight = window.innerHeight;
 
-    const windowHeight =
-    window.innerHeight;
+  revealElements.forEach((element) => {
+    const position = element.getBoundingClientRect().top;
 
-    revealElements.forEach((element)=>{
-
-        const position =
-        element.getBoundingClientRect().top;
-
-        if(position < windowHeight - 100){
-
-            element.classList.add("show");
-
-        }
-
-    });
-
+    if (position < windowHeight - 100) {
+      element.classList.add("show");
+    }
+  });
 }
 
 revealOnScroll();
 
-
-
 // ===== ONLINE / OFFLINE STATUS =====
 
-window.addEventListener("offline",()=>{
-
-    alert("⚠️ You are offline!");
-
+window.addEventListener("offline", () => {
+  alert("⚠️ You are offline!");
 });
 
-window.addEventListener("online",()=>{
-
-    alert("✅ Internet connection restored!");
-
+window.addEventListener("online", () => {
+  alert("✅ Internet connection restored!");
 });
-
-
 
 // ===== COPYRIGHT YEAR AUTO =====
 
-const copyright =
-document.querySelector(".copyright");
+const copyright = document.querySelector(".copyright");
 
-if(copyright){
+if (copyright) {
+  const year = new Date().getFullYear();
 
-    const year = new Date().getFullYear();
-
-    copyright.innerHTML =
-    `© ${year} BananaRecipes | All Rights Reserved`;
-
+  copyright.innerHTML = `© ${year} BananaRecipes | All Rights Reserved`;
 }
-
 
 // ===== SCROLL FUNCTION =====
 
-function scrollToOccasions(){
-
-    document
-    .getElementById("occasionSection")
-    .scrollIntoView({
-        behavior:"smooth"
-    });
-
+function scrollToOccasions() {
+  document.getElementById("occasionSection").scrollIntoView({
+    behavior: "smooth",
+  });
 }
-
 
 // ===== SHOW RECIPE =====
 
-function showRecipe(name){
-
-    alert("Opening " + name + " Recipes 🍴");
-
+function showRecipe(name) {
+  alert("Opening " + name + " Recipes 🍴");
 }
-
 
 // ===== AI CHEF BUTTON =====
 
-function openChef(){
-
-    alert("AI Chef Coming Soon 🤖");
-
+function openChef() {
+  alert("AI Chef Coming Soon 🤖");
 }
 
 // SEARCH OVERLAY
 
-function toggleSearch(){
+function toggleSearch() {
+  const overlay = document.getElementById("searchOverlay");
 
-  const overlay =
-  document.getElementById("searchOverlay");
-
-  if(overlay.style.display === "flex"){
-
+  if (overlay.style.display === "flex") {
     overlay.style.display = "none";
-
-  }else{
-
+  } else {
     overlay.style.display = "flex";
-
   }
-
 }
-
 
 // MOBILE MENU
 
-function toggleMenu(){
+function toggleMenu() {
+  const navMenu = document.querySelector(".nav-menu");
+  if (!navMenu) return;
 
-    const navMenu = document.querySelector('.nav-menu');
-    if (!navMenu) return;
+  navMenu.classList.toggle("active");
 
-    navMenu.classList.toggle('active');
+  const menuIcon = document.querySelector(
+    ".nav-icons .icon-btn i.fa-bars, .nav-icons .icon-btn i.fa-times",
+  );
+  if (menuIcon) {
+    menuIcon.classList.toggle("fa-bars");
+    menuIcon.classList.toggle("fa-times");
+  }
 
-    const menuIcon = document.querySelector('.nav-icons .icon-btn i.fa-bars, .nav-icons .icon-btn i.fa-times');
-    if (menuIcon) {
-        menuIcon.classList.toggle('fa-bars');
-        menuIcon.classList.toggle('fa-times');
-    }
-
-    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'visible';
-
+  document.body.style.overflow = navMenu.classList.contains("active")
+    ? "hidden"
+    : "visible";
 }
-
 
 // SCROLL
 
-function scrollCuisine(){
-
-  document
-  .getElementById("cuisineSection")
-  .scrollIntoView({
-    behavior:"smooth"
+function scrollCuisine() {
+  document.getElementById("cuisineSection").scrollIntoView({
+    behavior: "smooth",
   });
-
 }
-
 
 // ALERT
 
-function showCuisine(name){
-
+function showCuisine(name) {
   alert("Welcome to " + name);
-
 }
 
 // SEARCH OVERLAY
 
-function toggleSearch(){
+function toggleSearch() {
+  const overlay = document.getElementById("searchOverlay");
 
-    const overlay =
-    document.getElementById("searchOverlay");
-
-    if(overlay.style.display === "flex"){
-
-        overlay.style.display = "none";
-
-    }else{
-
-        overlay.style.display = "flex";
-
-    }
-
+  if (overlay.style.display === "flex") {
+    overlay.style.display = "none";
+  } else {
+    overlay.style.display = "flex";
+  }
 }
-
 
 // MOBILE MENU
 
-function toggleMenu(){
+function toggleMenu() {
+  const navMenu = document.querySelector(".nav-menu");
+  if (!navMenu) return;
 
-    const navMenu = document.querySelector('.nav-menu');
-    if (!navMenu) return;
+  navMenu.classList.toggle("active");
 
-    navMenu.classList.toggle('active');
+  const menuIcon = document.querySelector(
+    ".nav-icons .icon-btn i.fa-bars, .nav-icons .icon-btn i.fa-times",
+  );
+  if (menuIcon) {
+    menuIcon.classList.toggle("fa-bars");
+    menuIcon.classList.toggle("fa-times");
+  }
 
-    const menuIcon = document.querySelector('.nav-icons .icon-btn i.fa-bars, .nav-icons .icon-btn i.fa-times');
-    if (menuIcon) {
-        menuIcon.classList.toggle('fa-bars');
-        menuIcon.classList.toggle('fa-times');
-    }
-
-    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'visible';
-
+  document.body.style.overflow = navMenu.classList.contains("active")
+    ? "hidden"
+    : "visible";
 }
 
 // NEWS SCROLL
 
-function scrollNews(){
-
-    document
-    .getElementById("newsSection")
-    .scrollIntoView({
-        behavior:"smooth"
-    });
-
+function scrollNews() {
+  document.getElementById("newsSection").scrollIntoView({
+    behavior: "smooth",
+  });
 }
-
 
 // NEWS ALERT
 
-function readNews(title){
-
-    alert("Opening: " + title);
-
+function readNews(title) {
+  alert("Opening: " + title);
 }
 
-function exploreFeatures(){
-    alert("Explore amazing food features 🍴");
+function exploreFeatures() {
+  alert("Explore amazing food features 🍴");
 }
 
-function tryChef(){
-    alert("AI Chef is ready 👨‍🍳");
+function tryChef() {
+  alert("AI Chef is ready 👨‍🍳");
 }
 
-function subscribeFeature(){
-    alert("Subscribed Successfully ✅");
+function subscribeFeature() {
+  alert("Subscribed Successfully ✅");
 }
 
 /* SEARCH OVERLAY */
 
-function toggleSearch(){
+function toggleSearch() {
+  const overlay = document.getElementById("searchOverlay");
 
-    const overlay = document.getElementById("searchOverlay");
-
-    if(overlay.style.display === "flex"){
-        overlay.style.display = "none";
-    }
-    else{
-        overlay.style.display = "flex";
-    }
-
+  if (overlay.style.display === "flex") {
+    overlay.style.display = "none";
+  } else {
+    overlay.style.display = "flex";
+  }
 }
 
 /* SEARCH */
 
-function searchRecipes(){
+function searchRecipes() {
+  const input = document.getElementById("searchInput").value;
 
-    const input = document
-    .getElementById("searchInput")
-    .value;
-
-    if(input === ""){
-        alert("Please type something");
-    }
-    else{
-        alert("Searching for: " + input);
-    }
-
+  if (input === "") {
+    alert("Please type something");
+  } else {
+    alert("Searching for: " + input);
+  }
 }
 
 /* MOBILE MENU */
 
-function toggleMobileMenu(){
-    const navMenu = document.querySelector('.nav-menu');
-    if (!navMenu) return;
+function toggleMobileMenu() {
+  const navMenu = document.querySelector(".nav-menu");
+  if (!navMenu) return;
 
-    navMenu.classList.toggle('active');
+  navMenu.classList.toggle("active");
 
-    const menuIcon = document.querySelector('.nav-icons .icon-btn i.fa-bars, .nav-icons .icon-btn i.fa-times');
-    if (menuIcon) {
-        menuIcon.classList.toggle('fa-bars');
-        menuIcon.classList.toggle('fa-times');
-    }
+  const menuIcon = document.querySelector(
+    ".nav-icons .icon-btn i.fa-bars, .nav-icons .icon-btn i.fa-times",
+  );
+  if (menuIcon) {
+    menuIcon.classList.toggle("fa-bars");
+    menuIcon.classList.toggle("fa-times");
+  }
 
-    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'visible';
+  document.body.style.overflow = navMenu.classList.contains("active")
+    ? "hidden"
+    : "visible";
 }
 
 /* AI CHEF */
 
-function openChefModal(){
-    alert("AI Chef Coming Soon 👨‍🍳");
+function openChefModal() {
+  alert("AI Chef Coming Soon 👨‍🍳");
 }
 
 /* ===== FOOTER SUBSCRIBE ===== */
@@ -1200,75 +824,55 @@ function openChefModal(){
 const footerBtn = document.querySelector(".footer-newsletter button");
 
 footerBtn.addEventListener("click", function () {
+  const emailInput = document.querySelector(".footer-newsletter input");
 
-    const emailInput = document.querySelector(".footer-newsletter input");
+  const email = emailInput.value.trim();
 
-    const email = emailInput.value.trim();
+  if (email === "") {
+    alert("Please enter your email 📧");
 
-    if(email === ""){
+    return;
+  }
 
-        alert("Please enter your email 📧");
+  if (!validateEmail(email)) {
+    alert("Please enter a valid email ❌");
 
-        return;
-    }
+    return;
+  }
 
-    if(!validateEmail(email)){
+  alert("Subscribed Successfully 🎉");
 
-        alert("Please enter a valid email ❌");
-
-        return;
-    }
-
-    alert("Subscribed Successfully 🎉");
-
-    emailInput.value = "";
-
+  emailInput.value = "";
 });
-
 
 /* ===== EMAIL VALIDATION ===== */
 
-function validateEmail(email){
+function validateEmail(email) {
+  const pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
 
-    const pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-
-    return pattern.test(email);
-
+  return pattern.test(email);
 }
-
 
 /* ===== SOCIAL ICON EFFECT ===== */
 
 const socialLinks = document.querySelectorAll(".social-icons a");
 
 socialLinks.forEach((icon) => {
+  icon.addEventListener("mouseenter", () => {
+    icon.style.transform = "translateY(-5px) scale(1.1)";
+  });
 
-    icon.addEventListener("mouseenter", () => {
-
-        icon.style.transform = "translateY(-5px) scale(1.1)";
-
-    });
-
-    icon.addEventListener("mouseleave", () => {
-
-        icon.style.transform = "translateY(0) scale(1)";
-
-    });
-
+  icon.addEventListener("mouseleave", () => {
+    icon.style.transform = "translateY(0) scale(1)";
+  });
 });
-
 
 /* ===== FOOTER LINKS CLICK ===== */
 
 const footerLinks = document.querySelectorAll(".footer-box a");
 
 footerLinks.forEach((link) => {
-
-    link.addEventListener("click", () => {
-
-        console.log("Opening:", link.innerText);
-
-    });
-
+  link.addEventListener("click", () => {
+    console.log("Opening:", link.innerText);
+  });
 });
-
