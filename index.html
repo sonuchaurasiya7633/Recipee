@@ -12,39 +12,50 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar">
-      <div class="nav-container">
-        <div class="logo">
-          <h2>Banana<span>Recipes</span></h2>
-        </div>
+   <nav class="navbar">
+  <div class="nav-container">
 
-        <ul class="nav-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="dinners.html">Dinners</a></li>
-          <li><a href="meals.html">Meals</a></li>
-          <li><a href="ingredients.html">Ingredients</a></li>
-          <li><a href="occasions.html">Occasions</a></li>
-          <li><a href="cuisines.html">Cuisines</a></li>
+    <!-- LOGO -->
+    <div class="logo">
+      <h2>Banana<span>Recipes</span></h2>
+    </div>
 
-          <li><a href="news.html">News</a></li>
-          <li><a href="features.html">Features</a></li>
+    <!-- NAV MENU -->
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="dinners.html">Dinners</a></li>
+      <li><a href="meals.html">Meals</a></li>
+      <li><a href="ingredients.html">Ingredients</a></li>
+      <li><a href="occasions.html">Occasions</a></li>
+      <li><a href="cuisines.html">Cuisines</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
 
-          <li><a href="about.html">About Us</a></li>
-        </ul>
+    <!-- RIGHT ICONS -->
+    <div class="nav-icons">
 
-        <div class="nav-icons">
-          <button onclick="toggleSearch()" class="icon-btn">
-            <i class="fas fa-search"></i>
-          </button>
-          <button onclick="openChefModal()" class="icon-btn chef-icon">
-            <i class="fas fa-robot"></i> <span>Ask Chef</span>
-          </button>
-          <button onclick="toggleMobileMenu()" class="icon-btn">
-            <i class="fas fa-bars"></i>
-          </button>
-        </div>
-      </div>
-    </nav>
+      <!-- SEARCH -->
+      <button onclick="toggleSearch()" class="icon-btn desktop-btn">
+        <i class="fas fa-search"></i>
+      </button>
+
+      <!-- ASK CHEF -->
+      <button onclick="openChefModal()" class="icon-btn chef-icon desktop-btn">
+        <i class="fas fa-robot"></i>
+        <span>Ask Chef</span>
+      </button>
+
+      <!-- MOBILE MENU BUTTON -->
+      <button class="icon-btn menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+
+    </div>
+
+  </div>
+</nav>
 
     <!-- Search Overlay -->
     <div id="searchOverlay" class="search-overlay">

@@ -7,37 +7,107 @@
 
 // ===== MOBILE MENU =====
 
-function toggleMobileMenu() {
+// function toggleMobileMenu() {
 
-    const menu = document.querySelector(".nav-menu");
+//     const menu = document.querySelector(".nav-menu");
 
-    if (menu.classList.contains("active-menu")) {
+//     if (menu.classList.contains("active-menu")) {
 
-        menu.classList.remove("active-menu");
+//         menu.classList.remove("active-menu");
 
-        menu.style.display = "none";
+//         menu.style.display = "none";
 
-    } else {
+//     } else {
 
-        menu.classList.add("active-menu");
+//         menu.classList.add("active-menu");
 
-        menu.style.display = "flex";
-        menu.style.flexDirection = "column";
-        menu.style.position = "absolute";
-        menu.style.top = "85px";
-        menu.style.left = "0";
-        menu.style.width = "100%";
-        menu.style.background = "#fff";
-        menu.style.padding = "25px";
-        menu.style.gap = "20px";
-        menu.style.boxShadow = "0 10px 20px rgba(0,0,0,0.1)";
-        menu.style.zIndex = "999";
+//         menu.style.display = "flex";
+//         menu.style.flexDirection = "column";
+//         menu.style.position = "absolute";
+//         menu.style.top = "85px";
+//         menu.style.left = "0";
+//         menu.style.width = "100%";
+//         menu.style.background = "#fff";
+//         menu.style.padding = "25px";
+//         menu.style.gap = "20px";
+//         menu.style.boxShadow = "0 10px 20px rgba(0,0,0,0.1)";
+//         menu.style.zIndex = "999";
+
+//     }
+
+// }
+
+// MOBILE MENU TOGGLE
+
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
+const menuIcon = menuToggle.querySelector("i");
+
+menuToggle.addEventListener("click", () => {
+
+    navMenu.classList.toggle("active");
+
+    // CHANGE ICON
+    if(navMenu.classList.contains("active")){
+        menuIcon.classList.remove("fa-bars");
+        menuIcon.classList.add("fa-times");
+    }else{
+        menuIcon.classList.remove("fa-times");
+        menuIcon.classList.add("fa-bars");
+    }
+
+});
+
+
+// CLOSE MENU WHEN CLICKING LINKS
+
+const navLinks = document.querySelectorAll(".nav-menu a");
+
+navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+
+        navMenu.classList.remove("active");
+
+        menuIcon.classList.remove("fa-times");
+        menuIcon.classList.add("fa-bars");
+
+    });
+});
+
+
+// FIX RESIZE ISSUE
+
+window.addEventListener("resize", () => {
+
+    if(window.innerWidth > 991){
+
+        navMenu.classList.remove("active");
+
+        menuIcon.classList.remove("fa-times");
+        menuIcon.classList.add("fa-bars");
 
     }
 
-}
+});
 
 
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
+const menuIcon = menuToggle.querySelector("i");
+
+menuToggle.addEventListener("click", () => {
+
+    navMenu.classList.toggle("active");
+
+    if(navMenu.classList.contains("active")){
+        menuIcon.classList.remove("fa-bars");
+        menuIcon.classList.add("fa-times");
+    }else{
+        menuIcon.classList.remove("fa-times");
+        menuIcon.classList.add("fa-bars");
+    }
+
+});
 
 // ===== SEARCH OVERLAY =====
 
@@ -1181,3 +1251,4 @@ footerLinks.forEach((link) => {
     });
 
 });
+

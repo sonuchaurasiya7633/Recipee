@@ -24,6 +24,7 @@ body{
     width:100%;
     position:fixed;
     top:0;
+    left:0;
     z-index:1000;
     background:rgba(255,255,255,0.95);
     backdrop-filter:blur(12px);
@@ -39,6 +40,8 @@ body{
     justify-content:space-between;
 }
 
+/* LOGO */
+
 .logo h2{
     font-size:32px;
     font-weight:700;
@@ -49,11 +52,16 @@ body{
     color:#ff7b00;
 }
 
-/* MENU */
+/* ===== MENU ===== */
 
 .nav-menu{
     display:flex;
+    align-items:center;
     gap:28px;
+    list-style:none;
+}
+
+.nav-menu li{
     list-style:none;
 }
 
@@ -63,7 +71,10 @@ body{
     font-weight:500;
     transition:.3s;
     position:relative;
+    font-size:15px;
 }
+
+/* HOVER EFFECT */
 
 .nav-menu a::after{
     content:'';
@@ -80,11 +91,16 @@ body{
     color:#ff7b00;
 }
 
-.nav-menu a:hover::after{
+.nav-menu a:hover::after,
+.nav-menu a.active::after{
     width:100%;
 }
 
-/* ICONS */
+.nav-menu a.active{
+    color:#ff7b00;
+}
+
+/* ===== ICONS ===== */
 
 .nav-icons{
     display:flex;
@@ -101,6 +117,9 @@ body{
     cursor:pointer;
     transition:.3s;
     font-size:17px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .icon-btn:hover{
@@ -108,6 +127,8 @@ body{
     color:white;
     transform:translateY(-3px);
 }
+
+/* ASK CHEF BUTTON */
 
 .chef-icon{
     width:auto;
@@ -123,6 +144,133 @@ body{
 
 .chef-icon:hover{
     transform:scale(1.05);
+}
+
+/* MOBILE MENU BUTTON */
+
+.menu-toggle{
+    display:none;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+
+@media (max-width: 991px){
+
+    .nav-container{
+        padding:16px 20px;
+    }
+
+    /* HIDE DESKTOP MENU */
+
+    .nav-menu{
+        position:fixed;
+        top:0;
+        right:-100%;
+        width:100%;
+        height:100vh;
+        background:white;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        gap:35px;
+        transition:0.4s ease;
+        z-index:999;
+    }
+
+    /* SHOW MENU */
+
+    .nav-menu.active{
+        right:0;
+    }
+
+    .nav-menu a{
+        font-size:22px;
+        font-weight:600;
+    }
+
+    /* SHOW HAMBURGER */
+
+    .menu-toggle{
+        display:flex;
+        position:relative;
+        z-index:1001;
+    }
+
+    /* HIDE EXTRA BUTTONS */
+
+    .desktop-btn{
+        display:none;
+    }
+
+    .logo h2{
+        font-size:26px;
+    }
+
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 500px){
+
+    .logo h2{
+        font-size:22px;
+    }
+
+    .nav-menu a{
+        font-size:20px;
+    }
+
+}
+
+@media (max-width: 991px){
+
+    .nav-menu{
+        position:fixed;
+        top:0;
+        right:-100%;
+        width:280px;
+        height:100vh;
+        background:#fff;
+        flex-direction:column;
+        align-items:flex-start;
+        justify-content:flex-start;
+        padding:120px 30px 40px;
+        gap:25px;
+        transition:0.4s ease;
+        z-index:999;
+        box-shadow:-5px 0 20px rgba(0,0,0,0.1);
+    }
+
+    /* OPEN DRAWER */
+
+    .nav-menu.active{
+        right:0;
+    }
+
+    .nav-menu li{
+        width:100%;
+    }
+
+    .nav-menu a{
+        font-size:18px;
+        font-weight:600;
+        width:100%;
+        display:block;
+        padding:10px 0;
+    }
+
+    /* SHOW MENU ICON */
+
+    .menu-toggle{
+        display:flex;
+        z-index:1001;
+    }
+
+    /* HIDE DESKTOP BUTTONS */
+
+    .desktop-btn{
+        display:none;
+    }
 }
 
 /* ===== HERO ===== */
@@ -1512,20 +1660,7 @@ footer{
 
 /* ingredients ka css */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-
-body{
-    background:#fffaf5;
-    color:#222;
-    overflow-x:hidden;
-}
 
 /* ===== NAVBAR ===== */
 
@@ -2437,20 +2572,7 @@ footer{
 
 /* ===== GOOGLE FONT ===== */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-
-body{
-    background:#fffaf5;
-    color:#222;
-    overflow-x:hidden;
-}
 
 /* ===== NAVBAR ===== */
 
